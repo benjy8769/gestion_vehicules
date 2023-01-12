@@ -33,7 +33,7 @@ class Utilisateurs
 
     #[ORM\OneToOne(inversedBy: 'utilisateurs', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?utiliserVehicules $idUtilisateur = null;
+    private ?UtiliserVehicules $idUtilisateur = null;
 
     public function getId(): ?int
     {
@@ -88,12 +88,12 @@ class Utilisateurs
         return $this;
     }
 
-    public function getMot(): ?string
+    public function getMotDePasse(): ?string
     {
         return $this->motDePasse;
     }
 
-    public function setMot(string $motDePasse): self
+    public function setMotDePasse(string $motDePasse): self
     {
         $this->motDePasse = $motDePasse;
 

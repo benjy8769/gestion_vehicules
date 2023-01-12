@@ -52,12 +52,12 @@ class Voiture
     #[ORM\Column]
     private ?bool $geocoyote = null;
 
-    #[ORM\OneToMany(mappedBy: 'voiture', targetEntity: utiliserVehicules::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'voiture', targetEntity: UtiliserVehicules::class, orphanRemoval: true)]
     private Collection $idVoiture;
 
     #[ORM\OneToOne(inversedBy: 'voiture', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?estAssure $identifiantVoiture = null;
+    private ?EstAssure $identifiantVoiture = null;
 
     public function __construct()
     {

@@ -18,7 +18,7 @@ class Assurance
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'assurance', targetEntity: estAssure::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'assurance', targetEntity: EstAssure::class, orphanRemoval: true)]
     private Collection $identifiantAssurance;
 
     public function __construct()
