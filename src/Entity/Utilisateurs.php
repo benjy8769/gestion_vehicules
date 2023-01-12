@@ -10,33 +10,29 @@ use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 #[ORM\Entity(repositoryClass: UtilisateursRepository::class)]
 class Utilisateurs
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private int $id;
  
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    private ?string $nom;
 
     #[ORM\Column(length: 255)]
-    private ?string $prenom = null;
+    private ?string $prenom;
 
     #[ORM\Column(length: 255)]
-    private ?string $identifiant = null;
+    private ?string $identifiant;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $mail = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $motDePasse = null;
+    private ?string $motDePasse;
 
     #[ORM\Column(length: 255)]
-    private ?string $role = null;
+    private ?string $role;
 
     #[ORM\OneToOne(inversedBy: 'utilisateurs', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]

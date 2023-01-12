@@ -7,6 +7,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class InscriptionController extends AbstractController
 {
@@ -14,15 +16,24 @@ class InscriptionController extends AbstractController
 
     public function creer_utilisateur(ManagerRegistry $doctrine): Response
     {
+        $request = Request::createFromGlobals();
+        $nom=$request->get('nom');
+        $prenom=$request->get('prenom');
+        $identifiant=$request->get('identifiant');
+        $mail=$request->get('mail');
+        $mdp=$request->get('pwd');
+        $role=$request->get('choixRole');
+
+
         $entityManager = $doctrine->getManager();
 
         $user = new Utilisateurs();
-        $user->setNom('Chevalier');
-        $user->setPrenom('Benjamin');
-        $user->setIdentifiant('benjamin.chevalier');
-        $user->setMail('toto@tata.fr');
-        $user->setMotDePasse('Admin');
-        $user->setRole('Admin');
+        $user->setNom($nom);
+        $user->setPrenom(strval($prenom));
+        $user->setIdentifiant(strval($identifiant));
+        $user->setMail($mail);
+        $user->setMotDePasse(strval($mdp));
+        $user->setRole(strval($role));
 
         $entityManager->persist($user);
         $entityManager->flush();

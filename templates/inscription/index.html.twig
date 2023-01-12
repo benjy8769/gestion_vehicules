@@ -4,27 +4,27 @@
 
 {% block body %}
 <div>
-    <form action="{{path('incriptionController')}}" method=post>
+    <form action="{{path('app_inscription')}}" method="POST">
         <fieldset>
             <legend>Inscription de personnel</legend>
 
             <label for="nom">Nom *</label>
-            <input type=text name="nom" id="nom" value="">
+            <input type="text" name="nom" id="nom" value="" required>
 
             <label for="prenom">Prenom *</label>
-            <input type=text name="prenom" id="prenom" value="">
+            <input type="text" name="prenom" id="prenom" value="" required>
 
             <label for="identifiant">Identifiant *</label>
-            <input type=text name="identifiant" id="identifiant" value="">
+            <input type="text" name="identifiant" id="identifiant" value="" required>
 
             <label for="mail">Adresse Mail</label>
-            <input type=text name="mail" id="mail" value="">
+            <input type="text" name="mail" id="mail" value="">
 
             <label for="pwd">Mot de passe *</label>
-            <input type=password name="pwd" id="pwd" value="">
+            <input type="password" name="pwd" id="pwd" value="" required>
 
             <label for="choixRole">Roles *</label>
-            <select name="choixRole" id="choixRole">
+            <select name="choixRole" id="choixRole" required>
                 <option value="">----</option>
                 <option value="intervenant">intervenant</option>
                 <option value="administration">Administration</option>
