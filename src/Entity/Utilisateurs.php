@@ -17,22 +17,22 @@ class Utilisateurs
  
 
     #[ORM\Column(length: 255)]
-    private ?string $nom;
+    private ?string $nom = "";
 
     #[ORM\Column(length: 255)]
-    private ?string $prenom;
+    private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $identifiant;
+    private ?string $identifiant = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $mail = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $motDePasse;
+    private ?string $motDePasse = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $role;
+    private ?string $role = null;
 
     #[ORM\OneToOne(inversedBy: 'utilisateurs', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
