@@ -3,18 +3,37 @@
 {% block title %}Hello InscriptionController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div>
+    <form action="{{path('incriptionController')}}" method=post>
+        <fieldset>
+            <legend>Inscription de personnel</legend>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <label for="nom">Nom *</label>
+            <input type=text name="nom" id="nom" value="">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/cheva/OneDrive/Documents/ADN87/gestion_vehicules/src/Controller/InscriptionController.php'|file_link(0) }}">src/Controller/InscriptionController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/cheva/OneDrive/Documents/ADN87/gestion_vehicules/templates/inscription/index.html.twig'|file_link(0) }}">templates/inscription/index.html.twig</a></code></li>
-    </ul>
+            <label for="prenom">Prenom *</label>
+            <input type=text name="prenom" id="prenom" value="">
+
+            <label for="identifiant">Identifiant *</label>
+            <input type=text name="identifiant" id="identifiant" value="">
+
+            <label for="mail">Adresse Mail</label>
+            <input type=text name="mail" id="mail" value="">
+
+            <label for="pwd">Mot de passe *</label>
+            <input type=password name="pwd" id="pwd" value="">
+
+            <label for="choixRole">Roles *</label>
+            <select name="choixRole" id="choixRole">
+                <option value="">----</option>
+                <option value="intervenant">intervenant</option>
+                <option value="administration">Administration</option>
+                <option value="administrateur">Administrateur</option>
+                <option value="comptabilite">Compatbilité</option>
+            </select>
+
+            <input type=submit name="valider" value="Valider">
+        </fieldset>
+    </form>
 </div>
 {% endblock %}

@@ -5,13 +5,20 @@ namespace App\Entity;
 use App\Repository\UtilisateursRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
+
 #[ORM\Entity(repositoryClass: UtilisateursRepository::class)]
 class Utilisateurs
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+ 
 
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
