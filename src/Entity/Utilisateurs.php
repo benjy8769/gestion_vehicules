@@ -17,7 +17,7 @@ class Utilisateurs
  
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = "";
+    private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
@@ -36,7 +36,7 @@ class Utilisateurs
 
     #[ORM\OneToOne(inversedBy: 'utilisateurs', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?UtiliserVehicules $idUtilisateur = null;
+    private ?UtiliserVehicules $idUtilisateur;
 
     public function getId(): ?int
     {
