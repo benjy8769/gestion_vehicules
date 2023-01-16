@@ -23,7 +23,7 @@ class LoginController extends AbstractController
         $utilisateur = $request->get('user_login');
         $mdp = $request->get('mdp_login');
 
-        if($user->verifier_utilisateur($utilisateur, $mdp) == True) 
+        if($user->verifier_utilisateur($mdp, $utilisateur) == True) 
         {
             $role = $user->getRoles();
 
@@ -31,6 +31,8 @@ class LoginController extends AbstractController
                 'controller_name' => 'PersonnelController',
                 $role,
             ]);
+
+            session_start();
         }else{
             echo('Le mot de passe et/ou l\'identifiant sont incorrects !');
 

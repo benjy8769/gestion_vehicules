@@ -33,7 +33,7 @@ class Utilisateurs
     /**
      * @var string The hashed password
      */
-    #[ORM\Column]
+    #[ORM\Column(nullable:false)]
     private ?string $mot_de_passe = null;
 
 
@@ -74,7 +74,8 @@ class Utilisateurs
      */
     public function getPassword(): string
     {
-        return $this->mot_de_passe;
+        print_r("//".$this->mot_de_passe);
+        return (string) $this->mot_de_passe;
     }
 
     public function setPassword(string $password): self
@@ -123,7 +124,15 @@ class Utilisateurs
 
     public function verifier_utilisateur($mdp, $utilisateur): bool
     {
-        if(password_verify($mdp, $this->mot_de_passe) &&  $this->identifiant == $utilisateur)
+        echo($mdp);
+        echo("*");
+        echo($this->getPassword());
+        echo("---");
+        echo($utilisateur);
+        echo("*");
+        echo($this->getIdentifiant());
+
+        if(password_verify($mdp, $this->getPassword()))
         {
             return true;
         }else{

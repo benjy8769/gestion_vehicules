@@ -37,6 +37,7 @@ class InscriptionController extends AbstractController
 
         $user = new Utilisateurs();
 
+
         $user->setNom(strval($nom));
         $user->setPrenom(strval($prenom));
         $user->setIdentifiant(strval($identifiant));
