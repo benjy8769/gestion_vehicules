@@ -26,9 +26,6 @@ class UtiliserVehicules
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $heureFin = null;
 
-    #[ORM\OneToOne(mappedBy: 'idUtilisateur', cascade: ['persist', 'remove'])]
-    private ?Utilisateurs $utilisateurs = null;
-
     #[ORM\ManyToOne(inversedBy: 'idVoiture')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Voiture $voiture = null;
@@ -82,23 +79,6 @@ class UtiliserVehicules
     public function setHeureFin(\DateTimeInterface $heureFin): self
     {
         $this->heureFin = $heureFin;
-
-        return $this;
-    }
-
-    public function getUtilisateurs(): ?Utilisateurs
-    {
-        return $this->utilisateurs;
-    }
-
-    public function setUtilisateurs(Utilisateurs $utilisateurs): self
-    {
-        // set the owning side of the relation if necessary
-        if ($utilisateurs->getIdUtilisateur() !== $this) {
-            $utilisateurs->setIdUtilisateur($this);
-        }
-
-        $this->utilisateurs = $utilisateurs;
 
         return $this;
     }

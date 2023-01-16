@@ -4,34 +4,37 @@
 
 {% block body %}
 <div>
-    <form action="{{path('app_inscription')}}" method="$_POST">
+    <form action="{{path('app_inscription')}}" method="post">
         <fieldset>
             <legend>Inscription de personnel</legend>
 
-            <label for="nom">Nom *</label>
-            <input type="text" name="nom" id="nom" value="" required>
+            <label for="nom">Nom *</label><br>
+            <input type="text" name="nom" id="nom" value="" onload="" required><br><br>
 
-            <label for="prenom">Prenom *</label>
-            <input type="text" name="prenom" id="prenom" value="" required>
+            <label for="prenom">Prenom *</label><br>
+            <input type="text" name="prenom" id="prenom" value="" autocomplete="off" required><br><br>
 
-            <label for="identifiant">Identifiant *</label>
-            <input type="text" name="identifiant" id="identifiant" value="" required>
+            <label for="identifiant">Identifiant *</label><br>
+            <input type="text" name="identifiant" id="identifiant" value="" autocomplete="off" required><br><br>
 
-            <label for="mail">Adresse Mail</label>
-            <input type="text" name="mail" id="mail" value="">
+            <label for="mail">Adresse Mail</label><br>
+            <input type="text" name="mail" id="mail" value="" autocomplete="off"><br><br>
 
-            <label for="pwd">Mot de passe *</label>
-            <input type="password" name="pwd" id="pwd" value="" required>
+            <label for="pwd">Mot de passe *</label><br>
+            <input type="password" name="pwd" id="pwd" value="" autocomplete="off" required><br><br>
 
-            <label for="choixRole">Roles *</label>
-            <select name="choixRole" id="choixRole" required>
+            <label for="choixRole">Roles *</label><br>
+            <select name="choixRole" id="choixRole" autocomplete="off" required>
                 <option value="">----</option>
                 <option value="intervenant">intervenant</option>
                 <option value="administration">Administration</option>
                 <option value="administrateur">Administrateur</option>
                 <option value="comptabilite">Compatbilité</option>
-            </select>
+            </select><br>
 
+            <p>* Mentions obligatoires</p>
+
+            <input type="reset" name="annuler" id="annuler" value="Annuler">
             <input type=submit name="valider" value="Valider">
         </fieldset>
     </form>

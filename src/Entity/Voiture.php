@@ -52,6 +52,10 @@ class Voiture
     #[ORM\Column]
     private ?bool $geocoyote = null;
 
+    
+    #[ORM\column(nullable: true)]
+    private ?int $num_geocoyote = null;
+
     #[ORM\OneToMany(mappedBy: 'voiture', targetEntity: UtiliserVehicules::class, orphanRemoval: true)]
     private Collection $idVoiture;
 
@@ -209,6 +213,18 @@ class Voiture
     public function setGeocoyote(bool $geocoyote): self
     {
         $this->geocoyote = $geocoyote;
+
+        return $this;
+    }
+
+    public function getNumGeocoyote(): ?int
+    {
+        return $this->geocoyote;
+    }
+
+    public function setNumGeocoyote(int $num_geocoyote): self
+    {
+        $this->geocoyote = $num_geocoyote;
 
         return $this;
     }
