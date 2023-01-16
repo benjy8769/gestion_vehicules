@@ -132,7 +132,7 @@ class Utilisateurs
         echo("*");
         echo($this->getIdentifiant());
 
-        if(password_verify($mdp, $this->getPassword()))
+        if($utilisateur == $this->getIdentifiant() && password_verify($mdp, $this->getPassword()))
         {
             return true;
         }else{

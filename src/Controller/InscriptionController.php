@@ -12,14 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class InscriptionController extends AbstractController
 {
-    // #[Route('/personnel/creer', name: 'app_inscription')]
-    // public function index(): Response
-    // {
-    //     return $this->render('inscription/index.html.twig', [
-    //         'controller_name' => 'InscriptionController',
-    //     ]);
-    // }
-
     #[Route('/personnel/creer', name: 'app_inscription')]
     public function creer_utilisateur(ManagerRegistry $doctrine): Response
     {

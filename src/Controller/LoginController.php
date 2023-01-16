@@ -25,6 +25,7 @@ class LoginController extends AbstractController
 
         if($user->verifier_utilisateur($mdp, $utilisateur) == True) 
         {
+            print_r("!!".$user->verifier_utilisateur($mdp, $utilisateur));
             $role = $user->getRoles();
 
              return $this->render('personnel/index.html.twig', [
