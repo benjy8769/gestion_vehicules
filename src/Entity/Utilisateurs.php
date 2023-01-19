@@ -74,7 +74,7 @@ class Utilisateurs
      */
     public function getPassword(): string
     {
-        print_r("//".$this->mot_de_passe);
+        //print_r("//".$this->mot_de_passe);
         return (string) $this->mot_de_passe;
     }
 
@@ -121,17 +121,8 @@ class Utilisateurs
         return $this;
     }
 
-
     public function verifier_utilisateur($mdp, $utilisateur): bool
     {
-        echo($mdp);
-        echo("*");
-        echo($this->getPassword());
-        echo("---");
-        echo($utilisateur);
-        echo("*");
-        echo($this->getIdentifiant());
-
         if($utilisateur == $this->getIdentifiant() && password_verify($mdp, $this->getPassword()))
         {
             return true;

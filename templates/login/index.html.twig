@@ -3,6 +3,9 @@
 {% block title %}Hello LoginController!{% endblock %}
 
 {% block body %}
+<?php
+    session_start();
+?>
 <div>
     <form action="{{path('app_login')}}" method="post">
         <fieldset>

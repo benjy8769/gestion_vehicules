@@ -74,10 +74,27 @@ class UtilisateursRepository extends ServiceEntityRepository implements Password
     public function findOneById($value): ?Utilisateurs
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
+            ->andWhere('u.mot_de_passe = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    }
+
+    public function findUser($identifiant): ?Utilisateurs
+    {
+        //$entityManager = $doctrine->getRepository(Utilisateurs::class);
+
+        $criteria = array('identifiant' => $identifiant);
+        //$user= new Utilisateurs();
+        $user = $this->findBy($criteria);
+
+        //print_r($user);
+
+        if($user == array()){
+            $user[0] = new Utilisateurs();
+        }
+
+        return $user[0];
     }
 }
