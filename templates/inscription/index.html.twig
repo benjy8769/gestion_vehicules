@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello InscriptionController!{% endblock %}
+{% block title %}ADN87 - Inscription{% endblock %}
 
 {% block body %}
 <div>
@@ -18,7 +18,7 @@
             <input type="text" name="identifiant" id="identifiant" value="" autocomplete="off" required><br><br>
 
             <label for="mail">Adresse Mail</label><br>
-            <input type="text" name="mail" id="mail" value="" autocomplete="off"><br><br>
+            <input type="email" name="mail" id="mail" value="" autocomplete="off"><br><br>
 
             <label for="pwd">Mot de passe *</label><br>
             <input type="password" name="pwd" id="pwd" value="" autocomplete="off" required><br><br>
@@ -26,9 +26,9 @@
             <label for="choixRole">Roles *</label><br>
             <select name="choixRole" id="choixRole" autocomplete="off" required>
                 <option value="">----</option>
-                <option value="intervenant">intervenant</option>
+                <option value="intervenant">Intervenant</option>
                 <option value="administratif">Administratif</option>
-                <option value="administrateur">administrateur</option>
+                <option value="administrateur">Administrateur</option>
                 <option value="comptabilite">Compatbilité</option>
             </select><br>
 

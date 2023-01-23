@@ -16,7 +16,7 @@ class Voiture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?string $identifiant = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -46,27 +46,14 @@ class Voiture
     #[ORM\Column]
     private ?bool $estDisponible = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $numeroSerie = null;
-
     #[ORM\Column]
     private ?bool $geocoyote = null;
 
-    
     #[ORM\column(nullable: true)]
     private ?int $num_geocoyote = null;
 
-    #[ORM\OneToMany(mappedBy: 'voiture', targetEntity: UtiliserVehicules::class, orphanRemoval: true)]
-    private Collection $idVoiture;
 
-    #[ORM\OneToOne(inversedBy: 'voiture', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?EstAssure $identifiantVoiture = null;
 
-    public function __construct()
-    {
-        $this->idVoiture = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -193,17 +180,6 @@ class Voiture
         return $this;
     }
 
-    public function getNumeroSerie(): ?string
-    {
-        return $this->numeroSerie;
-    }
-
-    public function setNumeroSerie(?string $numeroSerie): self
-    {
-        $this->numeroSerie = $numeroSerie;
-
-        return $this;
-    }
 
     public function isGeocoyote(): ?bool
     {
@@ -229,45 +205,4 @@ class Voiture
         return $this;
     }
 
-    /**
-     * @return Collection<int, utiliserVehicules>
-     */
-    public function getIdVoiture(): Collection
-    {
-        return $this->idVoiture;
-    }
-
-    public function addIdVoiture(utiliserVehicules $idVoiture): self
-    {
-        if (!$this->idVoiture->contains($idVoiture)) {
-            $this->idVoiture->add($idVoiture);
-            $idVoiture->setVoiture($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdVoiture(utiliserVehicules $idVoiture): self
-    {
-        if ($this->idVoiture->removeElement($idVoiture)) {
-            // set the owning side to null (unless already changed)
-            if ($idVoiture->getVoiture() === $this) {
-                $idVoiture->setVoiture(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getIdentifiantVoiture(): ?estAssure
-    {
-        return $this->identifiantVoiture;
-    }
-
-    public function setIdentifiantVoiture(estAssure $identifiantVoiture): self
-    {
-        $this->identifiantVoiture = $identifiantVoiture;
-
-        return $this;
-    }
 }
