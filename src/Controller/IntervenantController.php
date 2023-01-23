@@ -12,7 +12,7 @@ class IntervenantController extends AbstractController
     #[Route('/intervenant', name: 'app_intervenant')]
     public function Intervenant(VoitureRepository $repo): Response
     {
-        $repo
+        $repo;
 
         return $this->render('intervenant/index.html.twig', [
             'controller_name' => 'IntervenantController',
