@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Voiture;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use phpDocumentor\Reflection\Types\Void_;
 
 /**
  * @extends ServiceEntityRepository<Voiture>
@@ -39,20 +38,6 @@ class VoitureRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-    public function vehiculeDisponibles():array
-    {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT *
-            FROM App\Entity\Voiture v
-            WHERE v.est_disponible = 1'
-        );
-
-        return $query->getResult();
-    }
-
 
 //    /**
 //     * @return Voiture[] Returns an array of Voiture objects

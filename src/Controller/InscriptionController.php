@@ -9,9 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+
 class InscriptionController extends AbstractController
 {
-    #[Route('/inscription', name: 'app_inscription')]
+    #[Route('/personnel/creer', name: 'app_inscription')]
     public function creer_utilisateur(ManagerRegistry $doctrine): Response
     {
         $request = Request::createFromGlobals();

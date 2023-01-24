@@ -18,6 +18,13 @@ class Assurance
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[ORM\OneToMany(mappedBy: 'assurance', targetEntity: EstAssure::class, orphanRemoval: true)]
+    private Collection $identifiantAssurance;
+
+    public function __construct()
+    {
+        $this->identifiantAssurance = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -36,4 +43,33 @@ class Assurance
         return $this;
     }
 
+    /**
+     * @return Collection<int, estAssure>
+     */
+    public function getIdentifiantAssurance(): Collection
+    {
+        return $this->identifiantAssurance;
+    }
+
+    public function addIdentifiantAssurance(estAssure $identifiantAssurance): self
+    {
+        if (!$this->identifiantAssurance->contains($identifiantAssurance)) {
+            $this->identifiantAssurance->add($identifiantAssurance);
+            $identifiantAssurance->setAssurance($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdentifiantAssurance(estAssure $identifiantAssurance): self
+    {
+        if ($this->identifiantAssurance->removeElement($identifiantAssurance)) {
+            // set the owning side to null (unless already changed)
+            if ($identifiantAssurance->getAssurance() === $this) {
+                $identifiantAssurance->setAssurance(null);
+            }
+        }
+
+        return $this;
+    }
 }
