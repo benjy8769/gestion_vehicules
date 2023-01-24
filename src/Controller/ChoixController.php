@@ -24,7 +24,7 @@ class PersonnelController extends AbstractController
 
         $role = $session->get('role');
 
-        if($role == "administration"){
+        if($role == "administrateur"){
             return $this->render('choix/index.html.twig', [
                 'controller_name' => 'ChoixController',
             ]);
