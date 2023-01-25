@@ -17,8 +17,6 @@ class LoginController extends AbstractController
     #[Route('/login', name: 'app_login')]
     public function connexion(UtilisateursRepository $repo): Response
     {
-
-
         $request = Request::createFromGlobals();
         $identifiant = $request->get('user_login');
         $mdp = $request->get('mdp_login');

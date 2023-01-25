@@ -32,20 +32,20 @@ class IntervenantController extends AbstractController
         $dateDebut = $request->get('dateDebut');
         $kilometrage = $request->get('kilometrage');
 
-        $voiture->setKilometrage($kilometrage);
+        $voiture->setKilometrage(intval($kilometrage));
         $estDisponible = $voiture->isEstDisponible();
         $estDisponible = 0;
-        $voiture->setEstDisponible($estDisponible);
+        $voiture->setEstDisponible(intval($estDisponible));
 
         $utilisation->setIdVehicule(strval($vehicule));
         $utilisation->setDateDebut(strval($dateDebut));
-        $utilisation->setNom($nom);
-        $utilisation->setPrenom($prenom);
+        $utilisation->setNom(strval($nom));
+        $utilisation->setPrenom(strval($prenom));
 
         $entityManager->persist($voiture, $utilisation);
         $entityManager->flush();
 
-        return $this->render('intervenant/index.html.twig', [
+        return $this->render('intervenant/intervenant_debut.twig', [
             'controller_name' => 'IntervenantController',
             'lesVehicules' => $listeVehicules,
             'nom' => $nom,
@@ -58,13 +58,13 @@ class IntervenantController extends AbstractController
     }
 
 
-    // #[Route('/login/intervenant/fin', name: 'fin_intervenant')]
-    // public function fin(VoitureRepository $repo): Response
-    // {
+    #[Route('/login/intervenant/fin', name: 'fin_intervenant')]
+    public function fin(VoitureRepository $repo): Response
+    {
         
 
-    //     return $this->render('intervenant/index.html.twig', [
-    //         'controller_name' => 'IntervenantController',
-    //     ]);
-    // }
+        return $this->render('intervenant/intervenant_fin.twig', [
+            'controller_name' => 'IntervenantController',
+        ]);
+    }
 }

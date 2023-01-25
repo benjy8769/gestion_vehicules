@@ -52,6 +52,9 @@ class Voiture
     #[ORM\column(nullable: true)]
     private ?int $num_geocoyote = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $numGeocoyote = null;
+
 
     public function getId(): ?int
     {
