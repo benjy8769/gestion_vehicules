@@ -53,8 +53,6 @@ class Voiture
     private ?int $num_geocoyote = null;
 
 
-
-
     public function getId(): ?int
     {
         return $this->id;
@@ -204,5 +202,4 @@ class Voiture
 
         return $this;
     }
-
 }

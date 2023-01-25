@@ -4,21 +4,30 @@
 
 {% block body %}
 <div>
-    <form>
+    <form action="{{path('debut_intervenant')}}" method="post">
         <fieldset>
             <legend>Prise d'un véhicule</legend>
 
-            <?php
-                foreach(vehiculeDisponibles() as $voiture){
-            ?>
-                <label for="vehicule">Véhicule</label><br>
-                <select name="vehicule" id="vehicule" required>
-                    <option value="<?php $voiture ?>"><?php echo $voiture; ?></option>
-                </select><br><br>
+            <!--Liste sélection véhicules-->
+            <label for="vehicule">Véhicule</label><br>
+            <select name="vehicule" id="vehicule" required>
+                <option value="">---</option>
+                {%for vehicules in lesVehicules%}
+                <option value="{{vehicules.getIdentifiant}}">{{ vehicules.getIdentifiant}}</option>
+                {% endfor %}
+            </select><br><br>
             
-            <?php
-                }
-            ?>
+            <!--Date de début-->
+            <label for="dateDebut">Date de prise d'un véhicule</label><br>
+            <input type="datetime-local" value="" name="dateDebut" id="dateDebut" required><br><br>
+
+            <!--Kilométrage-->
+            <label for="kilometrage">Kilométrage du véhicule</label><br>
+            <input type="number" value="" name="kilometrage" id="kilometrage" required><br><br>
+            
+            <!--Vider ou Valider le formulaire-->
+            <input type="reset" name="annuler" id="annuler" value="Annuler">
+            <input type=submit name="valider" value="Valider">
             
         </fieldset>
     </form>

@@ -18,6 +18,7 @@ class LoginController extends AbstractController
     public function connexion(UtilisateursRepository $repo): Response
     {
 
+
         $request = Request::createFromGlobals();
         $identifiant = $request->get('user_login');
         $mdp = $request->get('mdp_login');
@@ -25,7 +26,7 @@ class LoginController extends AbstractController
         $user = $repo->findUser($identifiant);
 
         if($user->verifier_utilisateur($mdp, $identifiant) == True) 
-        {
+        {   
             $nom = $user->getNom();
             $prenom = $user->getPrenom();
             $role = $user->getRoles();
@@ -56,9 +57,10 @@ class LoginController extends AbstractController
                 ]);
             }
         }else{
-            echo('Le mot de passe et/ou l\'identifiant sont incorrects !');
+            ?>
+            <script>window.alert("Le mot de passe ou l'identifiant sont incorrect ! ")</script>
 
-            
+            <?php
             return $this->render('login/index.html.twig', [
                 'controller_name' => 'LoginController'
             ]);
