@@ -17,6 +17,14 @@ class CreerVehiculesController extends AbstractController
         $date="01-01-2000";
 
         $request = Request::createFromGlobals();
+
+        $marque = "";
+        $modele = "";
+        $immatriculation = "";
+        $observations = "";
+        $choixCarburant = "";
+        $num_geocoyote = 0;
+    
         
         $identifiant=$request->get('identifiant');
         $marque=$request->get('marque');
@@ -46,8 +54,6 @@ class CreerVehiculesController extends AbstractController
 
         $voiture = new Voiture();
 
-
-        
 
         $voiture->setIdentifiant(strval($identifiant));
         $voiture->setMarque($marque);

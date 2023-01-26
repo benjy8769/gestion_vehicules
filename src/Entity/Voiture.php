@@ -16,28 +16,28 @@ class Voiture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: false)]
+    #[ORM\Column(length: 255)]
     private ?string $identifiant = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $marque = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $modele = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $immatriculation = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $kilometrage = null;
 
     #[ORM\Column(length: 255)]
     private ?string $site = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $observations = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $carburant = null;
 
     #[ORM\Column]
@@ -49,10 +49,7 @@ class Voiture
     #[ORM\Column]
     private ?bool $geocoyote = null;
 
-    #[ORM\column(nullable: true)]
-    private ?int $num_geocoyote = null;
-
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $numGeocoyote = null;
 
 
@@ -196,12 +193,12 @@ class Voiture
 
     public function getNumGeocoyote(): ?int
     {
-        return $this->geocoyote;
+        return $this->numGeocoyote;
     }
 
-    public function setNumGeocoyote(int $num_geocoyote): self
+    public function setNumGeocoyote(?int $numGeocoyote): self
     {
-        $this->geocoyote = $num_geocoyote;
+        $this->numGeocoyote = $numGeocoyote;
 
         return $this;
     }

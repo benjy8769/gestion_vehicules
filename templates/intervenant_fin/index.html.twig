@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ADN87 - Prise d'un véhicule{% endblock %}
+{% block title %}ADN87 - Retour d'un véhicule{% endblock %}
 
 {% block body %}
 <div>
-    <form action="{{path('debut_intervenant')}}" method="post">
+    <form action="{{path('fin_intervenant')}}" method="post">
         <fieldset>
-            <legend>Prise d'un véhicule</legend>
+            <legend>Retour d'un véhicule</legend>
 
             <!--Liste sélection véhicules-->
             <label for="vehicule">Véhicule</label><br>
@@ -17,8 +17,8 @@
                 {% endfor %}
             </select><br><br>
             
-            <!--Date de début-->
-            <label for="dateDebut">Date de prise d'un véhicule</label><br>
+            <!--Date et heure de fin-->
+            <label for="dateDebut">Date et heure de retour d'un véhicule</label><br>
             <input type="datetime-local" value="" name="dateDebut" id="dateDebut" required><br><br>
 
             <!--Kilométrage-->
@@ -28,7 +28,6 @@
             <!--Vider ou Valider le formulaire-->
             <input type="reset" name="annuler" id="annuler" value="Annuler">
             <input type=submit name="valider" value="Valider">
-            
         </fieldset>
     </form>
 </div>

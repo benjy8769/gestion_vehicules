@@ -39,6 +39,19 @@ class UtilisationRepository extends ServiceEntityRepository
         }
     }
 
+    public function findUtilisation($identifiant): ?Utilisation
+    {
+        $criteria = array('voiture_id' => $identifiant);
+
+        $utilisation = $this->findBy($criteria);
+
+        if($utilisation == array()){
+            $utilisation[0] = new Utilisation();
+        }
+
+        return $utilisation[0];
+    }
+
 //    /**
 //     * @return Utilisation[] Returns an array of Utilisation objects
 //     */

@@ -17,8 +17,8 @@ class ChoixIntervenantController extends AbstractController
         $debut = $request->get('debut');
         $fin = $request->get('fin');
 
-        return $this->render('intervenant/index.html.twig', [
-            'controller_name' => 'IntervenantController',
+        return $this->render('intervenantDebut/index.html.twig', [
+            'controller_name' => 'IntervenantDebutController',
             $debut, $fin
         ]);
     }

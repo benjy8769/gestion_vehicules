@@ -54,6 +54,20 @@ class VoitureRepository extends ServiceEntityRepository
     }
 
 
+    public function findVehicule($identifiant): ?Voiture
+    {
+        $criteria = array('identifiant' => $identifiant);
+
+        $vehicule = $this->findBy($criteria);
+
+        if($vehicule == array()){
+            $vehicule[0] = new Voiture();
+        }
+
+        return $vehicule[0];
+    }
+
+
 //    /**
 //     * @return Voiture[] Returns an array of Voiture objects
 //     */

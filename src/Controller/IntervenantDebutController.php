@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-use App\Entity\Voiture;
 use App\Entity\Utilisation;
 use App\Repository\VoitureRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -21,50 +20,70 @@ class IntervenantController extends AbstractController
         $listeVehicules = $repo->findAll();
         $request = Request::createFromGlobals();
         $session = new Session();
-        $voiture = new Voiture();
         $utilisation = new Utilisation();
         $entityManager = $doctrine->getManager();
 
         $nom = $session->get('nom');
         $prenom = $session->get('prenom');
 
-        $vehicule = $request->get('vehicule');
+        $identifiant = $request->get('vehicule');
         $dateDebut = $request->get('dateDebut');
         $kilometrage = $request->get('kilometrage');
 
-        $voiture->setKilometrage(intval($kilometrage));
-        $estDisponible = $voiture->isEstDisponible();
-        $estDisponible = 0;
-        $voiture->setEstDisponible(intval($estDisponible));
+        $vehicule = $repo->findVehicule($identifiant);
 
-        $utilisation->setIdVehicule(strval($vehicule));
+        // Recupération des données de la table Voiture
+        $identifiantVehicule = $vehicule->getIdentifiant();
+        $siteVehicule = $vehicule->getSite();
+        $garantieVehicule = $vehicule->getGarantie();
+        $GeocoyoteVehicule = $vehicule->isGeocoyote();
+        if($GeocoyoteVehicule == 0)
+        {
+            $GeocoyoteVehicule = false;
+        }else
+        {
+            $GeocoyoteVehicule = true;
+        }
+
+        if($garantieVehicule == 0)
+        {
+            $garantieVehicule = false;
+        }else
+        {
+            $garantieVehicule = true;
+        }
+
+        $vehicule->setIdentifiant(strval($identifiantVehicule));
+        $vehicule->setSite(strval($siteVehicule));
+        $vehicule->setGarantie($garantieVehicule);
+        $vehicule->setGeocoyote($GeocoyoteVehicule);
+
+        $vehicule->setKilometrage(intval($kilometrage));
+        $idVoiture = $vehicule->getIdentifiant($vehicule);
+        $estDisponible = $vehicule->isEstDisponible();
+        $estDisponible = 0;
+        $vehicule->setEstDisponible(intval($estDisponible));
+
         $utilisation->setDateDebut(strval($dateDebut));
+        $utilisation->setDateFin((strval($dateDebut)));
         $utilisation->setNom(strval($nom));
         $utilisation->setPrenom(strval($prenom));
+        $utilisation->setVoitureId(strval($idVoiture));
 
-        $entityManager->persist($voiture, $utilisation);
+        $entityManager->persist($vehicule);
+        $entityManager->persist($utilisation);
         $entityManager->flush();
 
+
+
         return $this->render('intervenant/intervenant_debut.twig', [
-            'controller_name' => 'IntervenantController',
+            'controller_name' => 'IntervenantDebutController',
             'lesVehicules' => $listeVehicules,
             'nom' => $nom,
             'prenom' => $prenom,
-            'id_vehicule' => $vehicule,
+            'voiture_id' => $idVoiture,
             'date_debut' => $dateDebut,
-            'kilometrage' => $kilometrage,
-            'est_disponible' => $estDisponible,
         ]);
-    }
 
-
-    #[Route('/login/intervenant/fin', name: 'fin_intervenant')]
-    public function fin(VoitureRepository $repo): Response
-    {
-        
-
-        return $this->render('intervenant/intervenant_fin.twig', [
-            'controller_name' => 'IntervenantController',
-        ]);
     }
 }

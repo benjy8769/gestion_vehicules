@@ -16,9 +16,6 @@ class Utilisation
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $idVehicule = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $dateDebut = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -30,24 +27,14 @@ class Utilisation
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $voiture_id = null;
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    public function getIdVehicule(): ?string
-    {
-        return $this->idVehicule;
-    }
-
-    public function setIdVehicule(string $idVehicule): self
-    {
-        $this->idVehicule = $idVehicule;
-
-        return $this;
-    }
-
 
     public function getDateDebut(): ?string
     {
@@ -93,6 +80,17 @@ class Utilisation
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+    public function getVoitureId(): ?string
+    {
+        return $this->voiture_id;
+    }
+
+    public function setVoitureId(string $voiture_id): self
+    {
+        $this->voiture_id = $voiture_id;
 
         return $this;
     }
