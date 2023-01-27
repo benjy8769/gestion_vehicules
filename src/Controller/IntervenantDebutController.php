@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Utilisation;
 use App\Repository\VoitureRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -12,7 +13,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 
 
-class IntervenantController extends AbstractController
+class IntervenantDebutController extends AbstractController
 {
     #[Route('login/intervenant/debut', name: 'debut_intervenant')]
     public function debut(VoitureRepository $repo, ManagerRegistry $doctrine): Response
@@ -37,6 +38,8 @@ class IntervenantController extends AbstractController
         $siteVehicule = $vehicule->getSite();
         $garantieVehicule = $vehicule->getGarantie();
         $GeocoyoteVehicule = $vehicule->isGeocoyote();
+        $observations = $vehicule->getObservations();
+
         if($GeocoyoteVehicule == 0)
         {
             $GeocoyoteVehicule = false;
@@ -57,7 +60,7 @@ class IntervenantController extends AbstractController
         $vehicule->setSite(strval($siteVehicule));
         $vehicule->setGarantie($garantieVehicule);
         $vehicule->setGeocoyote($GeocoyoteVehicule);
-
+        $vehicule->setObservations($observations);
         $vehicule->setKilometrage(intval($kilometrage));
         $idVoiture = $vehicule->getIdentifiant($vehicule);
         $estDisponible = $vehicule->isEstDisponible();
@@ -76,7 +79,7 @@ class IntervenantController extends AbstractController
 
 
 
-        return $this->render('intervenant/intervenant_debut.twig', [
+        return $this->render('intervenant_debut/intervenant_debut.twig', [
             'controller_name' => 'IntervenantDebutController',
             'lesVehicules' => $listeVehicules,
             'nom' => $nom,

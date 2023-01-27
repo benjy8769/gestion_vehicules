@@ -16,19 +16,19 @@ class Voiture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?string $identifiant = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $marque = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $modele = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $immatriculation = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $kilometrage = null;
 
     #[ORM\Column(length: 255)]
@@ -37,7 +37,7 @@ class Voiture
     #[ORM\Column(type: Types::TEXT)]
     private ?string $observations = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $carburant = null;
 
     #[ORM\Column]
@@ -49,7 +49,7 @@ class Voiture
     #[ORM\Column]
     private ?bool $geocoyote = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $numGeocoyote = null;
 
 

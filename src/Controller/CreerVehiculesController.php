@@ -14,18 +14,9 @@ class CreerVehiculesController extends AbstractController
     #[Route('/creer/vehicules', name: 'app_creer_vehicules')]
     public function creerVehicules(ManagerRegistry $doctrine): Response
     {
-        $date="01-01-2000";
-
-        $request = Request::createFromGlobals();
-
-        $marque = "";
-        $modele = "";
-        $immatriculation = "";
-        $observations = "";
-        $choixCarburant = "";
-        $num_geocoyote = 0;
-    
         
+        $request = Request::createFromGlobals();
+    
         $identifiant=$request->get('identifiant');
         $marque=$request->get('marque');
         $modele=$request->get('modele');
@@ -50,10 +41,12 @@ class CreerVehiculesController extends AbstractController
         }else{
             $geocoyote = 0;
         }
+
+        $observations = "";
         $entityManager = $doctrine->getManager();
 
+        
         $voiture = new Voiture();
-
 
         $voiture->setIdentifiant(strval($identifiant));
         $voiture->setMarque($marque);
@@ -67,6 +60,7 @@ class CreerVehiculesController extends AbstractController
         $voiture->setGeocoyote($geocoyote);
         $voiture->setNumGeocoyote(intval($num_geocoyote));
         $voiture->setObservations($observations);
+        
 
         $entityManager->persist($voiture);
         $entityManager->flush();
