@@ -39,9 +39,9 @@ class UtilisationRepository extends ServiceEntityRepository
         }
     }
 
-    public function findUtilisation($identifiant): ?Utilisation
+    public function findUtilisation($identifiantVehicule, $identifiantPersonnel): ?Utilisation
     {
-        $criteria = array('voiture_id' => $identifiant);
+        $criteria = array('voiture_id' => $identifiantVehicule, );
 
         $utilisation = $this->findBy($criteria);
 

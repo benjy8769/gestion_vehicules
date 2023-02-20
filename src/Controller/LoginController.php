@@ -15,57 +15,13 @@ class LoginController extends AbstractController
 {
     
     /**
-     * @Route("/Login", name="app_login")
+     * @Route("/login", name="app_login")
      */
-
-    public function connexion(UtilisateursRepository $repo): Response
+    public function index(): Response
     {
-        $request = Request::createFromGlobals();
-        $identifiant = $request->get('user_login');
-        $mdp = $request->get('mdp_login');
-
-        $user = $repo->findUser($identifiant);
-
-        if($user->verifier_utilisateur($mdp, $identifiant) == True) 
-        {   
-            $nom = $user->getNom();
-            $prenom = $user->getPrenom();
-            $role = $user->getRoles();
-
-            $session = new Session();
-            $session->set('nom', $nom);
-            $session->set('prenom', $prenom);
-            $session->set('role', $role);
-
-            $_SESSION['id']= $identifiant;
-            header("Location: {{role}}");
-
-            if($role == "administrateur"){
-                return $this->render('administration/index.html.twig', [
-                    'controller_name' => 'AdministrationController',
-                ]);
-            }elseif ($role == "intervenant") {
-                return $this->render('choixIntervenant/index.html.twig', [
-                    'controller_name' => 'ChoixIntervenantController',
-                ]);
-            }elseif ($role == "administratif") {
-                return $this->render('administratif/index.html.twig', [
-                    'controller_name' => 'AdministratifController',
-                ]);
-            }else {
-                return $this->render('comptabilite/index.html.twig', [
-                    'controller_name' => 'ComptabiliteController',
-                ]);
-            }
-        }else{
-            ?>
-            <script>window.alert("Le mot de passe ou l'identifiant sont incorrect ! ")</script>
-
-            <?php
-            return $this->render('login/index.html.twig', [
-                'controller_name' => 'LoginController'
-            ]);
-        }
-
+        return $this->render('login/index.html.twig', [
+            'controller_name' => 'LoginController'
+        ]);
     }
+
 }

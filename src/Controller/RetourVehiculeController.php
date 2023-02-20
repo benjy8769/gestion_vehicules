@@ -21,7 +21,6 @@ class RetourVehiculeController extends AbstractController
         $request = Request::createFromGlobals();
         $utilisation = new Utilisation();
         $entityManager = $doctrine->getManager();
-        $Getutilisation = $repoUtilisation->findAll();
 
 
         $identifiant = $request->get('vehicule');

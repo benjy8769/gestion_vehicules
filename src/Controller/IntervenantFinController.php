@@ -15,7 +15,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class IntervenantFinController extends AbstractController
 {
-    #[Route('login/intervenant/fin', name: 'fin_intervenant')]
+        /**
+     * @Route("/Intervenant/Retour_vehicule", name="fin_intervenant")
+     */
     public function fin(VoitureRepository $repo): Response
     {
             $listeVehicules = $repo->findAll();

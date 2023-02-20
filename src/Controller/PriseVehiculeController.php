@@ -13,17 +13,19 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class PriseVehiculeController extends AbstractController
 {
-    #[Route('/prise/vehicule', name: 'app_prise_vehicule')]
+    /**
+     * @Route("/prise/vehicule", name="app_prise_vehicule")
+     */
+
     public function PriseVehicule(VoitureRepository $repo, ManagerRegistry $doctrine): Response
     {
-        $listeVehicules = $repo->findAll();
 
         $request = Request::createFromGlobals();
         $session = new Session();
         $utilisation = new Utilisation();
         $entityManager = $doctrine->getManager();
 
-
+        $userId = $session->get('identifiant');
         $nom = $session->get('nom');
         $prenom = $session->get('prenom');
 
@@ -75,6 +77,7 @@ class PriseVehiculeController extends AbstractController
         $utilisation->setNom(strval($nom));
         $utilisation->setPrenom(strval($prenom));
         $utilisation->setVoitureId(strval($idVoiture));
+        $utilisation->setUtilisateurId(strval($userId));
 
         $entityManager->persist($vehicule);
         $entityManager->persist($utilisation);

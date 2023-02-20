@@ -1,10 +1,14 @@
 app_login:  
     path: /Login
-    controller: App\Controller\LoginController::login
+    controller: App\Controller\loginController::index
 
 debut_intervenant:
     path: /Intervenant/Prise_vehicule
-    controller: App\Controller\LoginController::login
+    controller: App\Controller\IntervenantDebutController::debut
+
+fin_intervenant:
+    path: /Intervenant/Retour_vehicule
+    controller: App\Controller\IntervenantFinController::fin
 
 controllers:
     resource: ../src/Controller/

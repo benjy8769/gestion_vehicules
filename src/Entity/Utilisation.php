@@ -30,6 +30,9 @@ class Utilisation
     #[ORM\Column(length: 50)]
     private ?string $voiture_id = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $utilisateur_id = null;
+
 
     public function getId(): ?int
     {
@@ -91,6 +94,18 @@ class Utilisation
     public function setVoitureId(string $voiture_id): self
     {
         $this->voiture_id = $voiture_id;
+
+        return $this;
+    }
+
+    public function getUtilisateurId(): ?string
+    {
+        return $this->utilisateur_id;
+    }
+
+    public function setUtilisateurId(string $utilisateur_id): self
+    {
+        $this->utilisateur_id = $utilisateur_id;
 
         return $this;
     }
