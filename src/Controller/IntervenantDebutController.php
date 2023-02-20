@@ -11,7 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class IntervenantDebutController extends AbstractController
 {
-    #[Route('login/intervenant/debut', name: 'debut_intervenant')]
+    /**
+     * @Route("/Intervenant/Prise_vehicule", name="debut_intervenant")
+     */
     public function debut(VoitureRepository $repo): Response
     {
         $listeVehicules = $repo->findAll();

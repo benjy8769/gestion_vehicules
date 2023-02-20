@@ -14,7 +14,10 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class LoginController extends AbstractController
 {
     
-    #[Route('/login', name: 'app_login')]
+    /**
+     * @Route("/Login", name="app_login")
+     */
+
     public function connexion(UtilisateursRepository $repo): Response
     {
         $request = Request::createFromGlobals();

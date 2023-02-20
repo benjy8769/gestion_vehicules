@@ -1,3 +1,11 @@
+app_login:  
+    path: /Login
+    controller: App\Controller\LoginController::login
+
+debut_intervenant:
+    path: /Intervenant/Prise_vehicule
+    controller: App\Controller\LoginController::login
+
 controllers:
     resource: ../src/Controller/
     type: attribute
