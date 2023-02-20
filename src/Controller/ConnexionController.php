@@ -24,7 +24,7 @@ class ConnexionController extends AbstractController
         $user = $repo->findUser($identifiant);
 
         if($user->verifier_utilisateur($mdp, $identifiant) == True) 
-        {   
+        {         
             $nom = $user->getNom();
             $prenom = $user->getPrenom();
             $role = $user->getRoles();

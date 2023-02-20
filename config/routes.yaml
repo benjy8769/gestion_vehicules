@@ -10,6 +10,11 @@ fin_intervenant:
     path: /Intervenant/Retour_vehicule
     controller: App\Controller\IntervenantFinController::fin
 
+logout:
+    path: /logout
+    controller: App\Controller\LogoutController::index
+
+
 controllers:
     resource: ../src/Controller/
     type: attribute

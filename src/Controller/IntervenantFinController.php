@@ -21,6 +21,7 @@ class IntervenantFinController extends AbstractController
     public function fin(VoitureRepository $repo): Response
     {
             $listeVehicules = $repo->findAll();
+            
             return $this->render('intervenant_fin/index.html.twig', [
             'controller_name' => 'IntervenantFinController',
             'lesVehicules' => $listeVehicules,

@@ -10,24 +10,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 
 
 class RetourVehiculeController extends AbstractController
 {
     #[Route('/retour/vehicule', name: 'app_retour_vehicule')]
-    public function retourVehicule(VoitureRepository $repo, UtilisationRepository $repoUtilisation, ManagerRegistry $doctrine): Response
+    public function retourVehicule(UtilisationRepository $repo, VoitureRepository $repoVehicules, ManagerRegistry $doctrine): Response
     {
-        $listeVehicules = $repo->findAll();
+        if (!isset($_SESSION))
+        {
+            return $this->render('login/index.html.twig', [
+                'controller_name' => 'LoginController',
+            ]);
+        }
+
         $request = Request::createFromGlobals();
-        $utilisation = new Utilisation();
+        $session = new Session();
         $entityManager = $doctrine->getManager();
 
+        $userId = $session->get('identifiant');
 
         $identifiant = $request->get('vehicule');
-        $dateDebut = $request->get('dateDebut');
+        $dateFin = $request->get('dateFin');
         $kilometrage = $request->get('kilometrage');
 
-        $vehicule = $repo->findVehicule($identifiant);
+        $vehicule = $repoVehicules->findVehicule($identifiant);
 
         // Recupération des données de la table Voiture
         $identifiantVehicule = $vehicule->getIdentifiant();
@@ -60,7 +69,20 @@ class RetourVehiculeController extends AbstractController
         $estDisponible = $vehicule->isEstDisponible();
         $estDisponible = 1;
         $vehicule->setEstDisponible(intval($estDisponible));
-        $utilisation->setDateFin((strval($dateDebut)));
+
+        $utilisation = $repo->findUtilisation($idVoiture, $userId);
+        $dateDebut = $utilisation->getDateDebut();
+        $nomUtilisateur = $utilisation->getNom();
+        $prenomUtilisateur = $utilisation->getPrenom();
+        $voitureid = $utilisation->getVoitureId();
+        $userId = $utilisation->getUtilisateurId();
+        
+        $utilisation->setNom(strval($nomUtilisateur));
+        $utilisation->setPrenom(strval($prenomUtilisateur));
+        $utilisation->setDateDebut(strval($dateDebut));
+        $utilisation->setDateFin(strval($dateFin));
+        $utilisation->setVoitureId(strval($voitureid));
+        $utilisation->setUtilisateurId(strval($userId));
 
 
         $entityManager->persist($vehicule);
@@ -69,11 +91,10 @@ class RetourVehiculeController extends AbstractController
 
 
 
-        return $this->render('login/index.html.twig', [
-            'controller_name' => 'IntervenantLogin',
-            'lesVehicules' => $listeVehicules,
+        return $this->render('choixIntervenant/index.html.twig', [
+            'controller_name' => 'ChoixIntervenant',
             'voiture_id' => $idVoiture,
-            'date_debut' => $dateDebut,
+            'utilisateur_id' => $userId
         ]);
     }
 }

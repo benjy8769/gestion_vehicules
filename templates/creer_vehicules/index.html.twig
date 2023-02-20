@@ -3,6 +3,16 @@
 {% block title %}ADN87 - Créer un véhicules{% endblock %}
 
 {% block body %}
+<div class="menu_administration">
+    <ul class="navbar">
+        <li><a href="inscription">Inscription de personnel</a></li>
+        <li><a href="creer_vehicules">Incription de véhicules</a></li>
+        <li><a href="">Afficher les véhicules</a></li>
+        <li><a href="">Afficher le personnel</a></li>
+        <li><a href="">Les prises des véhicules</a></li>
+    </ul>
+</div>
+
 <div>
     <form action="{{path('app_creation_vehicules')}}" method="post">
         <fieldset>
@@ -28,6 +38,7 @@
                 <option value="">----</option>
                 <option value="Limoges">Limoges</option>
                 <option value="Saint-Junien">Saint-Junien</option>
+                <option value="VehiculesFonctions">Vehicules de fonctions</option>
             </select><br><br>
 
             <label for="choixCarburant">Carburant</label><br>

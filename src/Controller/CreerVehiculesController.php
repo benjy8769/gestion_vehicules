@@ -11,7 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CreerVehiculesController extends AbstractController
 {
-    #[Route('/creer/vehicules', name: 'app_creer_vehicules')]
+    /**
+     * @Route("/creer_vehicules", name="app_creer_vehicules")
+     */
     public function index(): Response
     {
         return $this->render('creer_vehicules/index.html.twig', [
