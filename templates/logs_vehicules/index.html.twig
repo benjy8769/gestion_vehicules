@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LogsVehiculesController!{% endblock %}
+
+{% block body %}
+<div class="menu_administration">
+    <ul class="navbar">
+        <li><a href="inscription">Inscription de personnel</a></li>
+        <li><a href="creer_vehicules">Inscription de véhicules</a></li>
+        <li><a href="affichage_vehicules">Afficher les véhicules</a></li>
+        <li><a href="affichage_personnel">Afficher le personnel</a></li>
+        <li><a href="logs_vehicules">Les prises des véhicules</a></li>
+    </ul>
+</div>
+
+<div>
+    <table class="tableau">
+        <tr>
+            <th>Véhicules</th>
+            <th>Date début</th>
+            <th>Date fin</th>
+            <th>Identifiant utilisateur</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+        </tr>
+
+        {%for logs in logs%}
+        <tr>
+            <td>{{logs.getVoitureId}}</td>
+            <td>{{logs.getDateDebut}}</td>
+            <td>{{logs.getDateFin}}</td>
+            <td>{{logs.getUtilisateurId}}</td>
+            <td>{{logs.getNom}}</td>
+            <td>{{logs.getPrenom}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

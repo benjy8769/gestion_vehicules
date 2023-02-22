@@ -11,11 +11,16 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CreationVehiculesController extends AbstractController
 {
-    #[Route('/creation/vehicules', name: 'app_creation_vehicules')]
+    /**
+     * @Route("/creation_vehicules", name="app_creation_vehicules")
+     */
+
     public function creerVehicules(ManagerRegistry $doctrine): Response
     {
         
         $request = Request::createFromGlobals();
+
+        $observations = "";
     
         $identifiant=$request->get('identifiant');
         $marque=$request->get('marque');
@@ -42,7 +47,6 @@ class CreationVehiculesController extends AbstractController
             $geocoyote = 0;
         }
 
-        $observations = "";
         $entityManager = $doctrine->getManager();
 
         

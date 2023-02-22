@@ -36,6 +36,9 @@ class RetourVehiculeController extends AbstractController
         $dateFin = $request->get('dateFin');
         $kilometrage = $request->get('kilometrage');
 
+        $formatDateFin = date("d-m-Y H:i", strtotime($dateFin));
+
+
         $vehicule = $repoVehicules->findVehicule($identifiant);
 
         // Recupération des données de la table Voiture
@@ -80,7 +83,7 @@ class RetourVehiculeController extends AbstractController
         $utilisation->setNom(strval($nomUtilisateur));
         $utilisation->setPrenom(strval($prenomUtilisateur));
         $utilisation->setDateDebut(strval($dateDebut));
-        $utilisation->setDateFin(strval($dateFin));
+        $utilisation->setDateFin(strval($formatDateFin));
         $utilisation->setVoitureId(strval($voitureid));
         $utilisation->setUtilisateurId(strval($userId));
 

@@ -34,7 +34,7 @@ class Voiture
     #[ORM\Column(length: 255)]
     private ?string $site = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, length: 512, nullable: true)]
     private ?string $observations = null;
 
     #[ORM\Column(length: 255, nullable: true)]

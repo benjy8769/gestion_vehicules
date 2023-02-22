@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Utilisation;
 use App\Repository\VoitureRepository;
+use Doctrine\ORM\Query\AST\Functions\DateDiffFunction;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,8 @@ class PriseVehiculeController extends AbstractController
 
         $identifiant = $request->get('vehicule');
         $dateDebut = $request->get('dateDebut');
-        $kilometrage = $request->get('kilometrage');
+
+        $formatDateDebut = date("d-m-Y H:i", strtotime($dateDebut));
         
         $observations = $identifiant;
 
@@ -44,7 +46,7 @@ class PriseVehiculeController extends AbstractController
         $garantieVehicule = $vehicule->getGarantie();
         $GeocoyoteVehicule = $vehicule->isGeocoyote();
         $observations = $vehicule->getObservations();
-
+        $kilometrage = $vehicule->getKilometrage();
         if($GeocoyoteVehicule == 0)
         {
             $GeocoyoteVehicule = false;
@@ -72,8 +74,8 @@ class PriseVehiculeController extends AbstractController
         $estDisponible = 0;
         $vehicule->setEstDisponible(intval($estDisponible));
 
-        $utilisation->setDateDebut(strval($dateDebut));
-        $utilisation->setDateFin((strval($dateDebut)));
+        $utilisation->setDateDebut(strval($formatDateDebut));
+        $utilisation->setDateFin((strval($formatDateDebut)));
         $utilisation->setNom(strval($nom));
         $utilisation->setPrenom(strval($prenom));
         $utilisation->setVoitureId(strval($idVoiture));

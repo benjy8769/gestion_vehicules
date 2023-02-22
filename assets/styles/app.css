@@ -38,3 +38,8 @@ body {
     color: #F37634;
 }
 
+.tableau{
+    width: calc(100vw - 16px);
+    border: 1px solid black;
+    text-align: center;
+}

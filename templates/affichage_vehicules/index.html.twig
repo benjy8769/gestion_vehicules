@@ -3,5 +3,50 @@
 {% block title %}Hello AffichageVehiculesController!{% endblock %}
 
 {% block body %}
+<div class="menu_administration">
+    <ul class="navbar">
+        <li><a href="inscription">Inscription de personnel</a></li>
+        <li><a href="creer_vehicules">Inscription de véhicules</a></li>
+        <li><a href="affichage_vehicules">Afficher les véhicules</a></li>
+        <li><a href="affichage_personnel">Afficher le personnel</a></li>
+        <li><a href="logs_vehicules">Les prises des véhicules</a></li>
+    </ul>
+</div>
 
+<div>
+    <table class="tableau">
+        <tr>
+            <th>Identifiant</th>
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Immatriculation</th>
+            <th>kilométrage</th>
+            <th>site</th>
+            <th style="width: 150px">observations</th>
+            <th>carburant</th>
+            <th>Garantie</th>
+            <th>disponibilité</th>
+            <th>geocoyote</th>
+            <th>numero géocoyote</th>
+        </tr>
+
+        
+        {%for vehicules in vehicules%}
+        <tr>
+            <td>{{vehicules.getIdentifiant}}</td>
+            <td>{{vehicules.getMarque}}</td>
+            <td>{{vehicules.getModele}}</td>
+            <td>{{vehicules.getImmatriculation}}</td>
+            <td>{{vehicules.getKilometrage}}</td>
+            <td>{{vehicules.getsite}}</td>
+            <td style="width: 300px; height: 50px">{{vehicules.getObservations}}</td>
+            <td>{{vehicules.getCarburant}}</td>
+            <td>{{vehicules.getGarantie}}</td>
+            <td>{{vehicules.isEstDisponible}}</td>
+            <td>{{vehicules.isGeocoyote}}</td>
+            <td>{{vehicules.getNumGeocoyote}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}
