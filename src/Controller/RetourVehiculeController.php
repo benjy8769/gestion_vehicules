@@ -75,23 +75,24 @@ class RetourVehiculeController extends AbstractController
 
         $utilisation = $repo->findUtilisation($idVoiture, $userId);
         $dateDebut = $utilisation->getDateDebut();
+        $dateFinUtilisation = $utilisation->getDateFin();
         $nomUtilisateur = $utilisation->getNom();
         $prenomUtilisateur = $utilisation->getPrenom();
         $voitureid = $utilisation->getVoitureId();
         $userId = $utilisation->getUtilisateurId();
-        
-        $utilisation->setNom(strval($nomUtilisateur));
-        $utilisation->setPrenom(strval($prenomUtilisateur));
-        $utilisation->setDateDebut(strval($dateDebut));
-        $utilisation->setDateFin(strval($formatDateFin));
-        $utilisation->setVoitureId(strval($voitureid));
-        $utilisation->setUtilisateurId(strval($userId));
 
+        if($dateDebut==$dateFinUtilisation){
+            $utilisation->setNom(strval($nomUtilisateur));
+            $utilisation->setPrenom(strval($prenomUtilisateur));
+            $utilisation->setDateDebut(strval($dateDebut));
+            $utilisation->setDateFin(strval($formatDateFin));
+            $utilisation->setVoitureId(strval($voitureid));
+            $utilisation->setUtilisateurId(strval($userId));
+        }
 
         $entityManager->persist($vehicule);
         $entityManager->persist($utilisation);
         $entityManager->flush();
-
 
 
         return $this->render('choixIntervenant/index.html.twig', [
