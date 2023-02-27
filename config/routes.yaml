@@ -30,7 +30,9 @@ app_logs_vehicules:
     path: /logs_vehicules
     controller: App\Controller\LogsVehiculesController::index
 
-
+app_modification_vehicule:
+    path: /modification_vehicule
+    controller: App\Controller\ModificationVehiculeController::modificationVehicules
 
 
 controllers:

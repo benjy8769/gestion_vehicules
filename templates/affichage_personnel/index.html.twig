@@ -16,6 +16,7 @@
 <div>
     <table class="tableau">
         <tr>
+            <th></th>
             <th>Identifiant</th>
             <th>Nom</th>
             <th>Prénom</th>
@@ -26,6 +27,7 @@
         
         {%for personnel in personnel%}
         <tr>
+            <td ><input type="radio" name="choixVehicule" value=""/></td>
             <td>{{personnel.getIdentifiant}}</td>
             <td>{{personnel.getNom}}</td>
             <td>{{personnel.getPrenom}}</td>

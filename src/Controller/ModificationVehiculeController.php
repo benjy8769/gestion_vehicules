@@ -3,19 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Voiture;
+use App\Repository\VoitureRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 
-class CreationVehiculesController extends AbstractController
+class ModificationVehiculeController extends AbstractController
 {
-    /**
-     * @Route("/creation_vehicules", name="app_creation_vehicules")
-     */
-
-    public function creerVehicules(ManagerRegistry $doctrine): Response
+    #[Route('/modification_vehicule', name: 'app_modification_vehicule')]
+    public function modificationVehicules(ManagerRegistry $doctrine, VoitureRepository $repo): Response
     {
         
         $request = Request::createFromGlobals();
@@ -51,11 +49,11 @@ class CreationVehiculesController extends AbstractController
         else{
             $geocoyote = 0;
         }
-
+        
         $entityManager = $doctrine->getManager();
 
         
-        $voiture = new Voiture();
+        $voiture = $repo->findVehicule($identifiant);
 
         $voiture->setIdentifiant(strval($identifiant));
         $voiture->setMarque($marque);
@@ -74,8 +72,11 @@ class CreationVehiculesController extends AbstractController
         $entityManager->persist($voiture);
         $entityManager->flush();
 
-        return $this->render('creer_vehicules/index.html.twig', [
-            'controller_name' => 'CreerVehiculesController',
+        $listeVehicules = $repo->findAll();
+
+        return $this->render('affichage_vehicules/index.html.twig', [
+            'controller_name' => 'AffichageVehiculesController',
+            'vehicules' => $listeVehicules
         ]);
     }
 }

@@ -54,6 +54,19 @@ class VoitureRepository extends ServiceEntityRepository
     }
 
 
+    public function findAllOrder()
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQuery(
+            "SELECT '*'
+            FROM App\Entity\Voiture v
+            ORDER BY v.identifiant ASC"
+        );
+
+        return $qb->getResult();
+    }
+
+
     public function findVehicule($identifiant): ?Voiture
     {
         $criteria = array('identifiant' => $identifiant);

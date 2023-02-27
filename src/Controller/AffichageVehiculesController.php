@@ -14,7 +14,8 @@ class AffichageVehiculesController extends AbstractController
      */
     public function afficher_vehicules(VoitureRepository $repo): Response
     {
-        $listeVehicules = $repo->findAll();
+        $listeVehicules = $repo->findAllOrder();
+
 
         return $this->render('affichage_vehicules/index.html.twig', [
             'controller_name' => 'AffichageVehiculesController',

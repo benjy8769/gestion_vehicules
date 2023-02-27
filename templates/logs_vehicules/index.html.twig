@@ -14,30 +14,26 @@
 </div>
 
 <div>
-    <form>
-        <table class="tableau">
-            <tr>
-                <th></th>
-                <th>Véhicules</th>
-                <th>Date début</th>
-                <th>Date fin</th>
-                <th>Identifiant utilisateur</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-            </tr>
+    <table class="tableau">
+        <tr>
+            <th>Véhicules</th>
+            <th>Date début</th>
+            <th>Date fin</th>
+            <th>Identifiant utilisateur</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+        </tr>
 
-            {%for logs in logs%}
-            <tr>
-                <td><a href="/modifier_vehicule"><img src="assets\images\editer.png"></a> | <a href="/modifier/vehicule"><img src="assets\images\supprimer.png"></a></td>
-                <td>{{logs.getVoitureId}}</td>
-                <td>{{logs.getDateDebut}}</td>
-                <td>{{logs.getDateFin}}</td>
-                <td>{{logs.getUtilisateurId}}</td>
-                <td>{{logs.getNom}}</td>
-                <td>{{logs.getPrenom}}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </form
+        {%for logs in logs%}
+        <tr>
+            <td>{{logs.getVoitureId}}</td>
+            <td>{{logs.getDateDebut}}</td>
+            <td>{{logs.getDateFin}}</td>
+            <td>{{logs.getUtilisateurId}}</td>
+            <td>{{logs.getNom}}</td>
+            <td>{{logs.getPrenom}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 {% endblock %}

@@ -39,6 +39,8 @@ class PriseVehiculeController extends AbstractController
 
         $vehicule = $repo->findVehicule($identifiant);
 
+        
+
 
         // Recupération des données de la table Voiture
         $identifiantVehicule = $vehicule->getIdentifiant();

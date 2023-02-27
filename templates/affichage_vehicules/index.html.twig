@@ -14,39 +14,48 @@
 </div>
 
 <div>
-    <table class="tableau">
-        <tr>
-            <th>Identifiant</th>
-            <th>Marque</th>
-            <th>Modèle</th>
-            <th>Immatriculation</th>
-            <th>kilométrage</th>
-            <th>site</th>
-            <th style="width: 150px">observations</th>
-            <th>carburant</th>
-            <th>Garantie</th>
-            <th>disponibilité</th>
-            <th>geocoyote</th>
-            <th>numero géocoyote</th>
-        </tr>
+    <form action="{{path('app_modifier_vehicule')}}" method="post">
+        <input type="submit" name="afficher" value="Afficher">
+        <input type="submit" name="modifier" value="Modifier">
+        <input type="submit" name="supprimer" value="Supprimer">
+        <br><br>
+        <table class="tableau">
+            <tr>
+                <th></th>
+                <th>Identifiant</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Immatriculation</th>
+                <th>kilométrage</th>
+                <th>site</th>
+                <th style="width: 150px">observations</th>
+                <th>carburant</th>
+                <th>disponibilité</th>
+                <th>geocoyote</th>
+                <th>numero géocoyote</th>
+            </tr>
 
-        
-        {%for vehicules in vehicules%}
-        <tr>
-            <td>{{vehicules.getIdentifiant}}</td>
-            <td>{{vehicules.getMarque}}</td>
-            <td>{{vehicules.getModele}}</td>
-            <td>{{vehicules.getImmatriculation}}</td>
-            <td>{{vehicules.getKilometrage}}</td>
-            <td>{{vehicules.getsite}}</td>
-            <td style="width: 300px; height: 50px">{{vehicules.getObservations}}</td>
-            <td>{{vehicules.getCarburant}}</td>
-            <td>{{vehicules.getGarantie}}</td>
-            <td>{{vehicules.isEstDisponible}}</td>
-            <td>{{vehicules.isGeocoyote}}</td>
-            <td>{{vehicules.getNumGeocoyote}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+            
+            {%for vehicules in vehicules%}
+            <tr style="overflow: hidden">
+                <td><input type="radio" name="choixVehicule" value="{{vehicules.getIdentifiant}}"/></td>
+                <td>{{vehicules.getIdentifiant}}</td>
+                <td>{{vehicules.getMarque}}</td>
+                <td>{{vehicules.getModele}}</td>
+                <td>{{vehicules.getImmatriculation}}</td>
+                <td>{{vehicules.getKilometrage}}</td>
+                <td>{{vehicules.getsite}}</td>
+                <td style="width: 300px; height: 30px;" >{{vehicules.getObservations}}</td>
+                <td>{{vehicules.getCarburant}}</td>
+                <td>{{vehicules.isEstDisponible}}</td>
+                <td>{{vehicules.isGeocoyote}}</td>
+                <td>{{vehicules.getNumGeocoyote}}</td>
+            </tr>
+            {% endfor %}
+        </table><br>
+        <input type="submit" name="afficher" value="Afficher">
+        <input type="submit" name="modifier" value="Modifier">
+        <input type="submit" name="supprimer" value="Supprimer">
+    </form>
 </div>
 {% endblock %}

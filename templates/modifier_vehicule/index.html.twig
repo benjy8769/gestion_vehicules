@@ -1,31 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ModifierVehiculeController!{% endblock %}
+{% block title %}ADN87 - Modification Vehicules{% endblock %}
 
 {% block body %}
+<div class="menu_administration">
+    <ul class="navbar">
+        <li><a href="inscription">Inscription de personnel</a></li>
+        <li><a href="creer_vehicules">Inscription de véhicules</a></li>
+        <li><a href="affichage_vehicules">Afficher les véhicules</a></li>
+        <li><a href="affichage_personnel">Afficher le personnel</a></li>
+        <li><a href="logs_vehicules">Les prises des véhicules</a></li>
+    </ul>
+</div>
+
 <div>
-    <form action="{{path('app_creation_vehicules')}}" method="post">
+    <form action="{{path('app_modification_vehicule')}}" method="post">
         <fieldset>
-            <legend>Inscription de Véhicules</legend>
+            <legend>Modification de Véhicules</legend>
 
             <label for="identifiant">Identifiant *</label><br>
-            <input type="text" name="identifiant" id="identifiant" value="" onload="" required><br><br>
+            <input type="text" name="identifiant" id="identifiant" value="{{vehicule.getIdentifiant}}" onFocus="this.value='';" required><br><br>
 
             <label for="marque">Marque</label><br>
-            <input type="text" name="marque" id="marque" value="" ><br><br>
+            <input type="text" name="marque" id="marque" value="{{vehicule.getMarque}}" onFocus="this.value='';"><br><br>
 
             <label for="modele">Modele</label><br>
-            <input type="text" name="modele" id="modele" value="" ><br><br>
+            <input type="text" name="modele" id="modele" value="{{vehicule.getModele}}" onFocus="this.value='';"><br><br>
 
             <label for="immatriculation">Immatriculation</label><br>
-            <input type="text" name="immatriculation" id="immatriculation" value="" ><br><br>
+            <input type="text" name="immatriculation" id="immatriculation" value="{{vehicule.getImmatriculation}}" onFocus="this.value='';"><br><br>
 
             <label for="kilometrage">Kilométrage *</label><br>
-            <input type="number" name="kilometrage" id="kilometrage" value="" required><br><br>
+            <input type="number" name="kilometrage" id="kilometrage" value="{{vehicule.getKilometrage}}" onFocus="this.value='';" required><br><br>
 
             <label for="choixSite">Site *</label><br>
             <select name="choixSite" id="choixSite" required>
-                <option value="">----</option>
+                <option value="{{vehicule.getSite}}">{{vehicule.getSite}}</option>
                 <option value="Limoges">Limoges</option>
                 <option value="Saint-Junien">Saint-Junien</option>
                 <option value="VehiculesFonctions">Vehicules de fonctions</option>
@@ -33,7 +43,7 @@
 
             <label for="choixCarburant">Carburant</label><br>
             <select name="choixCarburant" id="choixCarburant">
-                <option value="">----</option>
+                <option value="{{vehicule.getCarburant}}">{{vehicule.getCarburant}}</option>
                 <option value="electrique">Electrique</option>
                 <option value="hybride">Hybride</option>
                 <option value="diesel">Diesel</option>
@@ -42,30 +52,30 @@
 
             <label for="garantie">Garantie *</label><br>
             <select name="garantie" id="garantie" required>
-                <option value="">----</option>
+                <option value="{{vehicule.getGarantie}}">{{vehicule.getGarantie}}</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
             </select><br><br>
 
             <label for="disponible">Disponible *</label><br>
             <select name="disponible" id="disponible" required>
-                <option value="">----</option>
+                <option value="{{vehicule.isEstDisponible}}">{{vehicule.isEstDisponible}}</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
             </select><br><br>
 
             <label for="geocoyote">Géocoyote *</label><br>
             <select name="geocoyote" id="geocoyote" required>
-                <option value="">----</option>
+                <option value="{{vehicule.isGeocoyote}}">{{vehicule.isGeocoyote}}</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
             </select><br><br>
 
             <label for="num_geocoyote">Numéro du Géocoyote</label><br>
-            <input type="number" name="num_geocoyote" id="num_geocoyote" value="" ><br><br>
+            <input type="number" name="num_geocoyote" id="num_geocoyote" value="{{vehicule.getNumGeocoyote}}" onFocus="this.value='';"><br><br>
 
             <label for="observations">Observations</label><br>
-            <textarea name="observations" id="observations" value="" ></textarea>
+            <textarea name="observations" id="observations" value="">{{vehicule.getObservations}}</textarea>
 
             <p>* Mentions obligatoires</p>
 
