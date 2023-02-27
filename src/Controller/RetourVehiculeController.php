@@ -70,7 +70,7 @@ class RetourVehiculeController extends AbstractController
         $vehicule->setKilometrage(intval($kilometrage));
         $idVoiture = $vehicule->getIdentifiant($vehicule);
         $estDisponible = $vehicule->isEstDisponible();
-        $estDisponible = 1;
+        $estDisponible = 0;
         $vehicule->setEstDisponible(intval($estDisponible));
 
         $utilisation = $repo->findUtilisation($idVoiture, $userId);
@@ -85,6 +85,7 @@ class RetourVehiculeController extends AbstractController
             $utilisation->setNom(strval($nomUtilisateur));
             $utilisation->setPrenom(strval($prenomUtilisateur));
             $utilisation->setDateDebut(strval($dateDebut));
+            $utilisation->setDateFin("");
             $utilisation->setDateFin(strval($formatDateFin));
             $utilisation->setVoitureId(strval($voitureid));
             $utilisation->setUtilisateurId(strval($userId));
