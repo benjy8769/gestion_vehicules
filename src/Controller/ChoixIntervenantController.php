@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-
 class ChoixIntervenantController extends AbstractController
 {
     #[Route('/choixIntervenant', name: 'app_choix')]

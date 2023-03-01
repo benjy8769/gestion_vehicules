@@ -36,6 +36,9 @@ class Utilisateurs
     #[ORM\Column(nullable:false)]
     private ?string $mot_de_passe = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $vehicule = null;
+
 
     public function getId(): ?int
     {
@@ -129,6 +132,18 @@ class Utilisateurs
         }else{
             return false;
         }
+    }
+
+    public function getVehicule(): ?string
+    {
+        return $this->vehicule;
+    }
+
+    public function setVehicule(?string $vehicule): self
+    {
+        $this->vehicule = $vehicule;
+
+        return $this;
     }
 
 }

@@ -15,9 +15,9 @@
 
 <div>
     <form action="{{path('app_modifier_vehicule')}}" method="post">
-        <input type="submit" name="afficher" value="Afficher">
-        <input type="submit" name="modifier" value="Modifier">
-        <input type="submit" name="supprimer" value="Supprimer">
+        <button type="submit" name="action" value="afficher">Afficher</button>
+        <button type="submit" name="action" value="modifier">Modifier</button>
+        <button type="submit" name="action" value="supprimer">Supprimer</button>
         <br><br>
         <table class="tableau">
             <tr>
@@ -28,7 +28,6 @@
                 <th>Immatriculation</th>
                 <th>kilométrage</th>
                 <th>site</th>
-                <th style="width: 150px">observations</th>
                 <th>carburant</th>
                 <th>disponibilité</th>
                 <th>geocoyote</th>
@@ -45,7 +44,6 @@
                 <td>{{vehicules.getImmatriculation}}</td>
                 <td>{{vehicules.getKilometrage}}</td>
                 <td>{{vehicules.getsite}}</td>
-                <td style="width: 300px; height: 30px;" >{{vehicules.getObservations}}</td>
                 <td>{{vehicules.getCarburant}}</td>
                 <td>{{vehicules.isEstDisponible}}</td>
                 <td>{{vehicules.isGeocoyote}}</td>
@@ -53,9 +51,9 @@
             </tr>
             {% endfor %}
         </table><br>
-        <input type="submit" name="afficher" value="Afficher">
-        <input type="submit" name="modifier" value="Modifier">
-        <input type="submit" name="supprimer" value="Supprimer">
+        <button type="submit" name="action" value="afficher">Afficher</button>
+        <button type="submit" name="action" value="modifier">Modifier</button>
+        <button type="submit" name="action" value="supprimer">Supprimer</button>
     </form>
 </div>
 {% endblock %}

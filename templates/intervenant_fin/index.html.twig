@@ -11,10 +11,7 @@
             <!--Liste sélection véhicules-->
             <label for="vehicule">Véhicule</label><br>
             <select name="vehicule" id="vehicule" required>
-                <option value="">---</option>
-                {%for vehicules in lesVehicules%}
-                <option value="{{vehicules.getIdentifiant}}">{{ vehicules.getIdentifiant}}</option>
-                {% endfor %}
+                <option value="{{user.getVehicule}}">{{user.getVehicule}}</option>
             </select><br><br>
             
             <!--Date et heure de fin-->

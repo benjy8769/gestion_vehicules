@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Utilisateurs;
 use App\Entity\Utilisation;
+use App\Repository\UtilisateursRepository;
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\Query\AST\Functions\DateDiffFunction;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,7 +20,7 @@ class PriseVehiculeController extends AbstractController
      * @Route("/prise/vehicule", name="app_prise_vehicule")
      */
 
-    public function PriseVehicule(VoitureRepository $repo, ManagerRegistry $doctrine): Response
+    public function PriseVehicule(VoitureRepository $repo, UtilisateursRepository $repoUser, ManagerRegistry $doctrine): Response
     {
 
         $request = Request::createFromGlobals();
@@ -29,6 +31,7 @@ class PriseVehiculeController extends AbstractController
         $userId = $session->get('identifiant');
         $nom = $session->get('nom');
         $prenom = $session->get('prenom');
+        $role = $session->get('role');
 
         $identifiant = $request->get('vehicule');
         $dateDebut = $request->get('dateDebut');
@@ -38,6 +41,8 @@ class PriseVehiculeController extends AbstractController
         $observations = $identifiant;
 
         $vehicule = $repo->findVehicule($identifiant);
+
+        $user = $repoUser->findUser($userId);
 
         
 
@@ -83,13 +88,26 @@ class PriseVehiculeController extends AbstractController
         $utilisation->setVoitureId(strval($idVoiture));
         $utilisation->setUtilisateurId(strval($userId));
 
+        $userNom = $user->getNom();
+        $userPrenom = $user->getPrenom();
+        $userMail = $user->getMail();
+        $userPass = $user->getPassword();
+        
+        $user->setIdentifiant(strval($userId));
+        $user->setNom(strval($userNom));
+        $user->setPrenom(strval($userPrenom));
+        $user->setMail(strval($userMail));
+        $user->setPassword($userPass);
+        $user->setRoles(strval($role));
+        $user->setVehicule(strval($identifiantVehicule));
+
         $entityManager->persist($vehicule);
         $entityManager->persist($utilisation);
+        $entityManager->persist($user);
         $entityManager->flush();
 
-        return $this->render('choixIntervenant/index.html.twig', [
-            'controller_name' => 'ChoixIntervenantController',
-
+        return $this->render('logout/index.html.twig', [
+            'controller_name' => 'LogoutController',
         ]);
 
     }

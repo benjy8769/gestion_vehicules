@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AfficherVehiculeController!{% endblock %}
+
+{% block body %}
+<div class="menu_administration">
+    <ul class="navbar">
+        <li><a href="inscription">Inscription de personnel</a></li>
+        <li><a href="creer_vehicules">Inscription de véhicules</a></li>
+        <li><a href="affichage_vehicules">Afficher les véhicules</a></li>
+        <li><a href="affichage_personnel">Afficher le personnel</a></li>
+        <li><a href="logs_vehicules">Les prises des véhicules</a></li>
+    </ul>
+</div>
+
+<a href="{{path('app_affichage_vehicules')}}">retour</a> | <a href="{{path('app_modifier_vehicule')}} name="action">Modifier</a>
+
+<div style="border: 1px solid black; text-align: center; width: 400px; margin: auto; border-radius: 10px;">
+
+    <label style="font-weight: bolder;">Identifiant : </label><br>
+    <label>{{vehicule.getIdentifiant}}</label><br><br>
+
+    <label style="font-weight: bolder;">Marque : </label><br>
+    <label>{{vehicule.getMarque}}</label><br><br>
+
+    <label style="font-weight: bolder;">Modèle : </label><br>
+    <label>{{vehicule.getModele}}</label><br><br>
+
+    <label style="font-weight: bolder;">Immatriculation : </label><br>
+    <label>{{vehicule.getImmatriculation}}</label><br><br>
+
+    <label style="font-weight: bolder;">Kilométrage : </label><br>
+    <label>{{vehicule.getKilometrage}}</label><br><br>
+
+    <label style="font-weight: bolder;">Site : </label><br>
+    <label>{{vehicule.getSite}}</label><br><br>
+
+    <label style="font-weight: bolder;">Observations : </label><br>
+    <textarea style="width: 300px; height: 200px; max-height: 300px; max-width: 390px" placeholder="{{vehicule.getObservations}}"></textarea><br><br>
+
+    <label style="font-weight: bolder;">Carburant</label><br>
+    <label>{{vehicule.getCarburant}}</label><br><br>
+
+    <label style="font-weight: bolder;">Disponibilité : </label><br>
+    <label>{{vehicule.isEstDisponible}}</label><br><br>
+
+    <label style="font-weight: bolder;">Géocoyote ? : </label><br>
+    <label>{{vehicule.isGeocoyote}}</label><br><br>
+
+    <label style="font-weight: bolder;">Numéro du géocoyote : </label><br>
+    <label>{{vehicule.getNumGeocoyote}}</label><br><br>
+
+    <label style="font-weight: bolder;">Garantie : </label><br>
+    <label>{{vehicule.getGarantie}}</label><br><br>
+    
+        
+
+</div>
+{% endblock %}

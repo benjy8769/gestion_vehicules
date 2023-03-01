@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\UtilisateursRepository;
-
+use App\Repository\VoitureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +15,7 @@ class ConnexionController extends AbstractController
     /**
      * @Route("/connexion", name="app_connex")
      */
-    public function connexion(UtilisateursRepository $repo): Response
+    public function connexion(UtilisateursRepository $repo, VoitureRepository $repoVehicule): Response
     {
         $request = Request::createFromGlobals();
         $identifiant = $request->get('user_login');
@@ -28,6 +28,7 @@ class ConnexionController extends AbstractController
             $nom = $user->getNom();
             $prenom = $user->getPrenom();
             $role = $user->getRoles();
+            $vehicule = $user->getVehicule();
 
             $session = new Session();
             $session->set('identifiant', $identifiant);
@@ -43,8 +44,16 @@ class ConnexionController extends AbstractController
                     'controller_name' => 'AdministrationController',
                 ]);
             }elseif ($role == "intervenant") {
-                return $this->render('choixIntervenant/index.html.twig', [
-                    'controller_name' => 'ChoixIntervenantController',
+                $listeVehicules = $repoVehicule->findAll();
+                if ($vehicule) {                    
+                    return $this->render('intervenant_fin/index.html.twig', [
+                        'controller_name' => 'IntervenantFinController',
+                        'lesVehicules' => $listeVehicules
+                    ]);
+                }
+                return $this->render('intervenant_debut/intervenant_debut.twig', [
+                    'controller_name' => 'IntervenantDebutController',
+                    'lesVehicules' => $listeVehicules
                 ]);
             }elseif ($role == "administratif") {
                 return $this->render('administratif/index.html.twig', [
