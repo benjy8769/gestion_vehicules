@@ -106,7 +106,7 @@ class PriseVehiculeController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        return $this->render('logout/index.html.twig', [
+        return $this->render('login/index.html.twig', [
             'controller_name' => 'LogoutController',
         ]);
 

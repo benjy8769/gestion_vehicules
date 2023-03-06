@@ -20,11 +20,13 @@ class IntervenantFinController extends AbstractController
 
         $identifiant = $session->get('identifiant');
 
-        $user = $repo->findUser($identifiant);
+        print_r($identifiant);
+
+        $identifiantUser = $repo->findUser($identifiant);
             
         return $this->render('intervenant_fin/index.html.twig', [
             'controller_name' => 'IntervenantFinController',
-            'user' => $user
+            'user' => $identifiantUser,
         ]);
     }
 }

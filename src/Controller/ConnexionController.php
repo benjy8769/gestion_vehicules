@@ -45,10 +45,12 @@ class ConnexionController extends AbstractController
                 ]);
             }elseif ($role == "intervenant") {
                 $listeVehicules = $repoVehicule->findAll();
+                $user = $repo->findUser($identifiant);
                 if ($vehicule) {                    
                     return $this->render('intervenant_fin/index.html.twig', [
                         'controller_name' => 'IntervenantFinController',
-                        'lesVehicules' => $listeVehicules
+                        'lesVehicules' => $listeVehicules,
+                        'user' => $user
                     ]);
                 }
                 return $this->render('intervenant_debut/intervenant_debut.twig', [

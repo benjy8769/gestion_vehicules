@@ -110,11 +110,12 @@ class RetourVehiculeController extends AbstractController
 
         $entityManager->persist($vehicule);
         $entityManager->persist($utilisation);
+        $entityManager->persist($user);
         $entityManager->flush();
 
 
-        return $this->render('choixIntervenant/index.html.twig', [
-            'controller_name' => 'ChoixIntervenant',
+        return $this->render('login/index.html.twig', [
+            'controller_name' => 'LogoutController',
             'voiture_id' => $idVoiture,
             'utilisateur_id' => $userId
         ]);
