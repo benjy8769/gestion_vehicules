@@ -39,6 +39,47 @@ class VoitureRepository extends ServiceEntityRepository
         }
     }
 
+    public function vehiculeDisponibles():array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT *
+            FROM App\Entity\Voiture v
+            WHERE v.est_disponible = 1'
+        );
+
+        return $query->getResult();
+    }
+
+
+    public function findAllOrder()
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQuery(
+            "SELECT '*'
+            FROM App\Entity\Voiture v
+            ORDER BY v.identifiant ASC"
+        );
+
+        return $qb->getResult();
+    }
+
+
+    public function findVehicule($identifiant): ?Voiture
+    {
+        $criteria = array('identifiant' => $identifiant);
+
+        $vehicule = $this->findBy($criteria);
+
+        if($vehicule == array()){
+            $vehicule[0] = new Voiture();
+        }
+
+        return $vehicule[0];
+    }
+
+
 //    /**
 //     * @return Voiture[] Returns an array of Voiture objects
 //     */

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AffichageVehiculesController!{% endblock %}
+
+{% block body %}
+<div class="menu_administration">
+    <ul class="navbar">
+        <li><a href="inscription">Inscription de personnel</a></li>
+        <li><a href="creer_vehicules">Inscription de véhicules</a></li>
+        <li><a href="affichage_vehicules">Afficher les véhicules</a></li>
+        <li><a href="affichage_personnel">Afficher le personnel</a></li>
+        <li><a href="logs_vehicules">Les prises des véhicules</a></li>
+    </ul>
+</div>
+
+<div>
+    <form action="{{path('app_modifier_vehicule')}}" method="post">
+        <button type="submit" name="action" value="afficher">Afficher</button>
+        <button type="submit" name="action" value="modifier">Modifier</button>
+        <button type="submit" name="action" value="supprimer">Supprimer</button>
+        <br><br>
+        <table class="tableau">
+            <tr>
+                <th></th>
+                <th>Identifiant</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Immatriculation</th>
+                <th>kilométrage</th>
+                <th>site</th>
+                <th>carburant</th>
+                <th>disponibilité</th>
+                <th>geocoyote</th>
+                <th>numero géocoyote</th>
+            </tr>
+
+            
+            {%for vehicules in vehicules%}
+            <tr style="overflow: hidden">
+                <td><input type="radio" name="choixVehicule" value="{{vehicules.getIdentifiant}}"/></td>
+                <td>{{vehicules.getIdentifiant}}</td>
+                <td>{{vehicules.getMarque}}</td>
+                <td>{{vehicules.getModele}}</td>
+                <td>{{vehicules.getImmatriculation}}</td>
+                <td>{{vehicules.getKilometrage}}</td>
+                <td>{{vehicules.getsite}}</td>
+                <td>{{vehicules.getCarburant}}</td>
+                <td>{{vehicules.isEstDisponible}}</td>
+                <td>{{vehicules.isGeocoyote}}</td>
+                <td>{{vehicules.getNumGeocoyote}}</td>
+            </tr>
+            {% endfor %}
+        </table><br>
+        <button type="submit" name="action" value="afficher">Afficher</button>
+        <button type="submit" name="action" value="modifier">Modifier</button>
+        <button type="submit" name="action" value="supprimer">Supprimer</button>
+    </form>
+</div>
+{% endblock %}

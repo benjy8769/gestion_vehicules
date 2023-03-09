@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SupprimerVehiculeController!{% endblock %}
+
+{% block body %}
+<div class="menu_administration">
+    <ul class="navbar">
+        <li><a href="inscription">Inscription de personnel</a></li>
+        <li><a href="creer_vehicules">Inscription de véhicules</a></li>
+        <li><a href="affichage_vehicules">Afficher les véhicules</a></li>
+        <li><a href="affichage_personnel">Afficher le personnel</a></li>
+        <li><a href="logs_vehicules">Les prises des véhicules</a></li>
+    </ul>
+</div>
+
+<div>
+    <form action="{{path('app_suppression_vehicule')}}" method="post">
+        <fieldset>
+            <legend>Confirmer la suppression d'un vehicule</legend>
+
+            <label>Voulez-vous confirmer la supression <strong>{{vehicule.getIdentifiant}}</strong></label><br><br>
+
+            <button type="submit" name="action" value="supprimer">Supprimer</button>
+            <button type="submit" name="action" value="annuler">Annuler</button>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

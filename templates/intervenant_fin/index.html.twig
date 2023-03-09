@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ADN87 - Retour d'un véhicule{% endblock %}
+
+{% block body %}
+<div>
+    <form action="{{path('app_retour_vehicule')}}" method="post">
+        <fieldset>
+            <legend>Retour d'un véhicule</legend>
+
+            <!--Liste sélection véhicules-->
+            <label for="vehicule">Véhicule</label><br>
+            <select name="vehicule" id="vehicule" required>
+                <option value="{{user.getVehicule}}">{{user.getVehicule}}</option>
+            </select><br><br>
+            
+            <!--Date et heure de fin-->
+            <label for="dateFin">Date et heure de retour d'un véhicule</label><br>
+            <input type="datetime-local" value="" name="dateFin" id="dateFin" required><br><br>
+
+            <!--Kilométrage-->
+            <label for="kilometrage">Kilométrage du véhicule</label><br>
+            <input type="number" value="" name="kilometrage" id="kilometrage" required><br><br>
+            
+            <!--Vider ou Valider le formulaire-->
+            <input type="reset" name="annuler" id="annuler" value="Annuler">
+            <input type=submit name="valider" value="Valider">
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

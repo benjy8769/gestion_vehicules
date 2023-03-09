@@ -1,3 +1,40 @@
+app_login:  
+    path: /login
+    controller: App\Controller\loginController::index
+
+debut_intervenant:
+    path: /Intervenant/Prise_vehicule
+    controller: App\Controller\IntervenantDebutController::debut
+
+fin_intervenant:
+    path: /Intervenant/Retour_vehicule
+    controller: App\Controller\IntervenantFinController::fin
+
+logout:
+    path: /logout
+    controller: App\Controller\LogoutController::index
+
+app_creation_vehicules:
+    path: /creation_vehicules
+    controller: App\Controller\CreationVehiculesController::creerVehicules
+
+app_affichage_vehicules:
+    path: /affichage_vehicules
+    controller: App\Controller\AffichageVehiculesController::afficher_vehicules
+
+app_inscription:
+    path: /inscription
+    controller: App\Controller\InscriptionController::index
+
+app_logs_vehicules:
+    path: /logs_vehicules
+    controller: App\Controller\LogsVehiculesController::index
+
+app_modification_vehicule:
+    path: /modification_vehicule
+    controller: App\Controller\ModificationVehiculeController::modificationVehicules
+
+
 controllers:
     resource: ../src/Controller/
     type: attribute

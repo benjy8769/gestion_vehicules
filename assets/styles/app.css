@@ -1,0 +1,45 @@
+body {
+    background-color: white
+}
+
+.menu_administration{
+    overflow: hidden;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.navbar{
+    width: calc(100vw - 16px);  
+    height: 10px;
+    position: inherit;
+    display: flex;
+    text-align: center;
+    padding: 0;
+    justify-content: center; 
+    font-weight: 800;
+}
+
+.navbar li{
+    list-style: none;
+    position: relative;
+    display: space-between;
+    font-size: 25px;
+    margin: 30px;
+    align-self: center;
+}
+
+.navbar a{
+    color: #52220C;
+    text-decoration: none;
+}
+
+.navbar a:hover{
+    text-decoration: underline black;
+    color: #F37634;
+}
+
+.tableau{
+    width: calc(100vw - 16px);
+    border: 1px solid black;
+    text-align: center;
+}

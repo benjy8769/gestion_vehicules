@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AffichagePersonnelController!{% endblock %}
+
+{% block body %}
+<div class="menu_administration">
+    <ul class="navbar">
+        <li><a href="inscription">Inscription de personnel</a></li>
+        <li><a href="creer_vehicules">Inscription de véhicules</a></li>
+        <li><a href="affichage_vehicules">Afficher les véhicules</a></li>
+        <li><a href="affichage_personnel">Afficher le personnel</a></li>
+        <li><a href="logs_vehicules">Les prises des véhicules</a></li>
+    </ul>
+</div>
+
+<div>
+    <table class="tableau">
+        <tr>
+            <th></th>
+            <th>Identifiant</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Rôle</th>
+            <th>Mail</th>
+        </tr>
+
+        
+        {%for personnel in personnel%}
+        <tr>
+            <td ><input type="radio" name="choixVehicule" value=""/></td>
+            <td>{{personnel.getIdentifiant}}</td>
+            <td>{{personnel.getNom}}</td>
+            <td>{{personnel.getPrenom}}</td>
+            <td>{{personnel.getRoles}}</td>
+            <td>{{personnel.getMail}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

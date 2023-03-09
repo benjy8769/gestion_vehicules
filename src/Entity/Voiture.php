@@ -34,7 +34,7 @@ class Voiture
     #[ORM\Column(length: 255)]
     private ?string $site = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(length: 262144, nullable: true)]
     private ?string $observations = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -52,17 +52,48 @@ class Voiture
     #[ORM\Column]
     private ?bool $geocoyote = null;
 
-    #[ORM\OneToMany(mappedBy: 'voiture', targetEntity: UtiliserVehicules::class, orphanRemoval: true)]
-    private Collection $idVoiture;
+    #[ORM\Column(nullable: true)]
+    private ?int $numGeocoyote = null;
 
-    #[ORM\OneToOne(inversedBy: 'voiture', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?EstAssure $identifiantVoiture = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ancienneVidange = null;
 
-    public function __construct()
-    {
-        $this->idVoiture = new ArrayCollection();
-    }
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $prochaineVidange = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ancienneDistribution = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $prochaineDistribution = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ancienneRevision = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $prochaineRevision = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ancienCT = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $prochainCT = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nomAssurance = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $dateEcheanceAssurance = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $proprietaire = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $typeFinancement = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $finFinancement = null;
+
 
     public function getId(): ?int
     {
@@ -213,44 +244,168 @@ class Voiture
         return $this;
     }
 
-    /**
-     * @return Collection<int, utiliserVehicules>
-     */
-    public function getIdVoiture(): Collection
+    public function getNumGeocoyote(): ?int
     {
-        return $this->idVoiture;
+        return $this->numGeocoyote;
     }
 
-    public function addIdVoiture(utiliserVehicules $idVoiture): self
+    public function setNumGeocoyote(?int $numGeocoyote): self
     {
-        if (!$this->idVoiture->contains($idVoiture)) {
-            $this->idVoiture->add($idVoiture);
-            $idVoiture->setVoiture($this);
-        }
+        $this->numGeocoyote = $numGeocoyote;
 
         return $this;
     }
 
-    public function removeIdVoiture(utiliserVehicules $idVoiture): self
+    public function getAncienneVidange(): ?string
     {
-        if ($this->idVoiture->removeElement($idVoiture)) {
-            // set the owning side to null (unless already changed)
-            if ($idVoiture->getVoiture() === $this) {
-                $idVoiture->setVoiture(null);
-            }
-        }
+        return $this->ancienneVidange;
+    }
+
+    public function setAncienneVidange(?string $ancienneVidange)
+    {
+        $this->ancienneVidange = $ancienneVidange;
+    }
+    
+    public function getProchaineVidange(): ?string
+    {
+        return $this->prochaineVidange;
+    }
+
+    public function setProchaineVidange(?string $prochaineVidange): self
+    {
+        $this->prochaineVidange = $prochaineVidange;
 
         return $this;
     }
 
-    public function getIdentifiantVoiture(): ?estAssure
+    public function getAncienneDistribution(): ?string
     {
-        return $this->identifiantVoiture;
+        return $this->ancienneDistribution;
     }
 
-    public function setIdentifiantVoiture(estAssure $identifiantVoiture): self
+    public function setAncienneDistribution(?string $ancienneDistribution): self
     {
-        $this->identifiantVoiture = $identifiantVoiture;
+        $this->ancienneDistribution = $ancienneDistribution;
+
+        return $this;
+    }
+
+    public function getProchaineDistribution(): ?string
+    {
+        return $this->prochaineDistribution;
+    }
+
+    public function setProchaineDistribution(?string $prochaineDistribution): self
+    {
+        $this->prochaineDistribution = $prochaineDistribution;
+
+        return $this;
+    }
+
+    public function getAncienneRevision(): ?string
+    {
+        return $this->ancienneRevision;
+    }
+
+    public function setAncienneRevision(?string $ancienneRevision): self
+    {
+        $this->ancienneRevision = $ancienneRevision;
+
+        return $this;
+    }
+
+    public function getProchaineRevision(): ?string
+    {
+        return $this->prochaineRevision;
+    }
+
+    public function setProchaineRevision(?string $prochaineRevision): self
+    {
+        $this->prochaineRevision = $prochaineRevision;
+
+        return $this;
+    }
+
+    public function getAncienCT(): ?string
+    {
+        return $this->ancienCT;
+    }
+
+    public function setAncienCT(?string $ancienCT): self
+    {
+        $this->ancienCT = $ancienCT;
+
+        return $this;
+    }
+
+    public function getProchainCT(): ?string
+    {
+        return $this->prochainCT;
+    }
+
+    public function setProchainCT(?string $prochainCT): self
+    {
+        $this->prochainCT = $prochainCT;
+
+        return $this;
+    }
+
+    public function getNomAssurance(): ?string
+    {
+        return $this->nomAssurance;
+    }
+
+    public function setNomAssurance(?string $nomAssurance): self
+    {
+        $this->nomAssurance = $nomAssurance;
+
+        return $this;
+    }
+
+    public function getDateEcheanceAssurance(): ?string
+    {
+        return $this->dateEcheanceAssurance;
+    }
+
+    public function setDateEcheanceAssurance(?string $dateEcheanceAssurance): self
+    {
+        $this->dateEcheanceAssurance = $dateEcheanceAssurance;
+
+        return $this;
+    }
+
+    public function getProprietaire(): ?string
+    {
+        return $this->proprietaire;
+    }
+
+    public function setProprietaire(?string $proprietaire): self
+    {
+        $this->proprietaire = $proprietaire;
+
+        return $this;
+    }
+
+    public function getTypeFinancement(): ?string
+    {
+        return $this->typeFinancement;
+    }
+
+    public function setTypeFinancement(?string $typeFinancement): self
+    {
+        $this->typeFinancement = $typeFinancement;
+
+        return $this;
+    }
+
+    public function getFinFinancement(): ?string
+    {
+        return $this->finFinancement;
+    }
+
+    public function setFinFinancement(?string $finFinancement): self
+    {
+        $this->finFinancement = $finFinancement;
 
         return $this;
     }

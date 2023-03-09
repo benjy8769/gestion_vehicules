@@ -3,8 +3,18 @@
 {% block title %}Hello InscriptionController!{% endblock %}
 
 {% block body %}
+<div class="menu_administration">
+    <ul class="navbar">
+        <li><a href="inscription">Inscription de personnel</a></li>
+        <li><a href="creer_vehicules">Inscription de véhicules</a></li>
+        <li><a href="affichage_vehicules">Afficher les véhicules</a></li>
+        <li><a href="affichage_personnel">Afficher le personnel</a></li>
+        <li><a href="logs_vehicules">Les prises des véhicules</a></li>
+    </ul>
+</div>
+
 <div>
-    <form action="{{path('app_inscription')}}" method="post">
+    <form action="{{path('inscription')}}" method="post">
         <fieldset>
             <legend>Inscription de personnel</legend>
 

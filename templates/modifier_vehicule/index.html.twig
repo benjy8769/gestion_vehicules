@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ADN87 - Modification Vehicules{% endblock %}
+
+{% block body %}
+<div class="menu_administration">
+    <ul class="navbar">
+        <li><a href="inscription">Inscription de personnel</a></li>
+        <li><a href="creer_vehicules">Inscription de véhicules</a></li>
+        <li><a href="affichage_vehicules">Afficher les véhicules</a></li>
+        <li><a href="affichage_personnel">Afficher le personnel</a></li>
+        <li><a href="logs_vehicules">Les prises des véhicules</a></li>
+    </ul>
+</div>
+
+<div>
+    <a href="{{path('app_affichage_vehicules')}}">retour</a>
+
+    <form action="{{path('app_modification_vehicule')}}" method="post">
+        <fieldset>
+            <legend>Modification de Véhicules</legend>
+
+            <label for="identifiant">Identifiant *</label><br>
+            <input type="text" name="identifiant" id="identifiant" value="{{vehicule.getIdentifiant}}" onFocus="this.value='';" required><br><br>
+
+            <label for="marque">Marque</label><br>
+            <input type="text" name="marque" id="marque" value="{{vehicule.getMarque}}" onFocus="this.value='';"><br><br>
+
+            <label for="modele">Modele</label><br>
+            <input type="text" name="modele" id="modele" value="{{vehicule.getModele}}" onFocus="this.value='';"><br><br>
+
+            <label for="immatriculation">Immatriculation</label><br>
+            <input type="text" name="immatriculation" id="immatriculation" value="{{vehicule.getImmatriculation}}" onFocus="this.value='';"><br><br>
+
+            <label for="kilometrage">Kilométrage *</label><br>
+            <input type="number" name="kilometrage" id="kilometrage" value="{{vehicule.getKilometrage}}" onFocus="this.value='';" required><br><br>
+
+            <label for="choixSite">Site *</label><br>
+            <select name="choixSite" id="choixSite" required>
+                <option value="{{vehicule.getSite}}">{{vehicule.getSite}}</option>
+                <option value="Limoges">Limoges</option>
+                <option value="Saint-Junien">Saint-Junien</option>
+                <option value="VehiculesFonctions">Vehicules de fonctions</option>
+            </select><br><br>
+
+            <label for="choixCarburant">Carburant</label><br>
+            <select name="choixCarburant" id="choixCarburant">
+                <option value="{{vehicule.getCarburant}}">{{vehicule.getCarburant}}</option>
+                <option value="electrique">Electrique</option>
+                <option value="hybride">Hybride</option>
+                <option value="diesel">Diesel</option>
+                <option value="essence">Essence</option>
+            </select><br><br>
+
+            <label for="garantie">Garantie *</label><br>
+            <select name="garantie" id="garantie" required>
+                <option value="{{vehicule.getGarantie}}">{{vehicule.getGarantie}}</option>
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select><br><br>
+
+            <label for="disponible">Disponible *</label><br>
+            <select name="disponible" id="disponible" required>
+                <option value="{{vehicule.isEstDisponible}}">{{vehicule.isEstDisponible}}</option>
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select><br><br>
+
+            <label for="geocoyote">Géocoyote *</label><br>
+            <select name="geocoyote" id="geocoyote" required>
+                <option value="{{vehicule.isGeocoyote}}">{{vehicule.isGeocoyote}}</option>
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select><br><br>
+
+            <label for="num_geocoyote">Numéro du Géocoyote</label><br>
+            <input type="number" name="num_geocoyote" id="num_geocoyote" value="{{vehicule.getNumGeocoyote}}" onFocus="this.value='';"><br><br>
+
+            <label for="observations">Observations</label><br>
+            <textarea name="observations" id="observations" value="">{{vehicule.getObservations}}</textarea><br><br>
+
+            <label>Ancienne vidange</label><br>
+            <input type="date" name="ancienne_vidange" id="ancienne_vidange" value=""><br><br>
+
+            <label>Prochaine vidange</label><br>
+            <input type="date" name="prochaine_vidange" id="prochaine_vidange" value=""><br><br>
+
+            <label>Ancienne Distribution</label><br>
+            <input type="date" name="ancienne_distribution" id="ancienne_distribution" value=""><br><br>
+
+            <label>Prochaine Distribution</label><br>
+            <input type="date" name="prochaine_distribution" id="prochaine_distribution" value=""><br><br>
+
+            <label>Ancienne Revision</label><br>
+            <input type="date" name="ancienne_revision" id="ancienne_revision" value=""><br><br>
+
+            <label>Prochaine Revision</label><br>
+            <input type="date" name="prochaine_revision" id="prochaine_revision" value=""><br><br>
+
+            <label>Ancien  Contrôle Technique</label><br>
+            <input type="date" name="ancien_ct" id="ancien_ct" value=""><br><br>
+
+            <label>Prochaine Contrôle Technique</label><br>
+            <input type="date" name="prochain_ct" id="prochain_ct" value=""><br><br>
+
+            <label>Assurance</label><br>
+            <input type="text" name="assurance" id="assurance" value=""><br><br>
+
+            <label>Date d'échéance assurance</label><br>
+            <input type="date" name="echeance_assurance" id="echeance_assurance" value=""><br><br>
+
+            <label>Propriétaire</label><br>
+            <input type="text" name="proprietaire" id="proprietaire" value=""><br><br>
+
+            <label>Type de financement</label><br>
+            <input type="text" name="financement" id="financement" value=""><br><br>
+
+            <label>Fin du financement</label><br>
+            <input type="date" name="fin_financement" id="fin_financement" value=""><br><br>
+
+            <p>* Mentions obligatoires</p>
+
+            <input type="reset" name="annuler" id="annuler" value="Annuler">
+            <input type=submit name="valider" value="Valider">
+        </fieldset>
+    </form>
+</div>
+{% endblock %}
