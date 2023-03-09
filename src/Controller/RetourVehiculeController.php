@@ -79,8 +79,6 @@ class RetourVehiculeController extends AbstractController
         $utilisation = $repo->findUtilisation($idVoiture, $userId);
         $dateDebut = $utilisation->getDateDebut();
         $dateFinUtilisation = $utilisation->getDateFin();
-        $nomUtilisateur = $utilisation->getNom();
-        $prenomUtilisateur = $utilisation->getPrenom();
         $voitureid = $utilisation->getVoitureId();
         $userId = $utilisation->getUtilisateurId();
 

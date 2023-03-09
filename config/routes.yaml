@@ -1,5 +1,5 @@
 app_login:  
-    path: /Login
+    path: /login
     controller: App\Controller\loginController::index
 
 debut_intervenant:
