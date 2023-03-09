@@ -34,13 +34,14 @@ class RetourVehiculeController extends AbstractController
         $userId = $session->get('identifiant');
         $role = $session->get('role');
 
-        $user = $repoUser->findUser($userId);
+        $user =$repoUser->findUser($userId);
 
         $identifiant = $request->get('vehicule');
         $dateFin = $request->get('dateFin');
         $kilometrage = $request->get('kilometrage');
 
         $formatDateFin = date("d-m-Y H:i", strtotime($dateFin));
+
 
         $vehicule = $repoVehicules->findVehicule($identifiant);
 
@@ -87,17 +88,11 @@ class RetourVehiculeController extends AbstractController
         $userMail = $user->getMail();
         $userPass = $user->getPassword();
 
-        //Debug
-
-        //print_r($utilisation);
-
-        //echo "Date Debut :".$dateDebut."    Date fin 2".$dateFinUtilisation;
-
-        if($dateDebut==$dateFinUtilisation || $dateFinUtilisation == ""){
-            /*$utilisation->setNom(strval($nomUtilisateur));
+        if($dateDebut==$dateFinUtilisation){
+            $utilisation->setNom(strval($nomUtilisateur));
             $utilisation->setPrenom(strval($prenomUtilisateur));
-            $utilisation->setDateDebut(strval($dateDebut));*/
-
+            $utilisation->setDateDebut(strval($dateDebut));
+            $utilisation->setDateFin("");
             $utilisation->setDateFin(strval($formatDateFin));
             $utilisation->setVoitureId(strval($voitureid));
             $utilisation->setUtilisateurId(strval($userId));
@@ -110,13 +105,6 @@ class RetourVehiculeController extends AbstractController
             $user->setRoles(strval($role));
             $user->setVehicule("");
         }
-
-
-        //Debug
-
-        //echo "<br>";
-        //print_r($utilisation);
-
 
         $entityManager->persist($vehicule);
         $entityManager->persist($utilisation);

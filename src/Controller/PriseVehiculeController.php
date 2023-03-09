@@ -82,7 +82,7 @@ class PriseVehiculeController extends AbstractController
         $vehicule->setEstDisponible(intval($estDisponible));
 
         $utilisation->setDateDebut(strval($formatDateDebut));
-        $utilisation->setDateFin("");
+        $utilisation->setDateFin((strval($formatDateDebut)));
         $utilisation->setNom(strval($nom));
         $utilisation->setPrenom(strval($prenom));
         $utilisation->setVoitureId(strval($idVoiture));
