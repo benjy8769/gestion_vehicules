@@ -16,7 +16,7 @@ class Voiture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: false)]
+    #[ORM\Column(length: 255)]
     private ?string $identifiant = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -46,9 +46,13 @@ class Voiture
     #[ORM\Column]
     private ?bool $estDisponible = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $numeroSerie = null;
+
     #[ORM\Column]
     private ?bool $geocoyote = null;
 
+<<<<<<< HEAD
     #[ORM\Column(nullable: true)]
     private ?int $numGeocoyote = null;
 
@@ -90,7 +94,19 @@ class Voiture
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $finFinancement = null;
+=======
+    #[ORM\OneToMany(mappedBy: 'voiture', targetEntity: UtiliserVehicules::class, orphanRemoval: true)]
+    private Collection $idVoiture;
 
+    #[ORM\OneToOne(inversedBy: 'voiture', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?EstAssure $identifiantVoiture = null;
+>>>>>>> master
+
+    public function __construct()
+    {
+        $this->idVoiture = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -217,6 +233,17 @@ class Voiture
         return $this;
     }
 
+    public function getNumeroSerie(): ?string
+    {
+        return $this->numeroSerie;
+    }
+
+    public function setNumeroSerie(?string $numeroSerie): self
+    {
+        $this->numeroSerie = $numeroSerie;
+
+        return $this;
+    }
 
     public function isGeocoyote(): ?bool
     {
@@ -230,18 +257,34 @@ class Voiture
         return $this;
     }
 
-    public function getNumGeocoyote(): ?int
+    /**
+     * @return Collection<int, utiliserVehicules>
+     */
+    public function getIdVoiture(): Collection
     {
+<<<<<<< HEAD
         return $this->numGeocoyote;
     }
 
     public function setNumGeocoyote(?int $numGeocoyote): self
     {
         $this->numGeocoyote = $numGeocoyote;
+=======
+        return $this->idVoiture;
+    }
+
+    public function addIdVoiture(utiliserVehicules $idVoiture): self
+    {
+        if (!$this->idVoiture->contains($idVoiture)) {
+            $this->idVoiture->add($idVoiture);
+            $idVoiture->setVoiture($this);
+        }
+>>>>>>> master
 
         return $this;
     }
 
+<<<<<<< HEAD
     public function getAncienneVidange(): ?string
     {
         return $this->ancienneVidange;
@@ -250,10 +293,21 @@ class Voiture
     public function setAncienneVidange(?string $ancienneVidange): self
     {
         $this->ancienneVidange = $ancienneVidange;
+=======
+    public function removeIdVoiture(utiliserVehicules $idVoiture): self
+    {
+        if ($this->idVoiture->removeElement($idVoiture)) {
+            // set the owning side to null (unless already changed)
+            if ($idVoiture->getVoiture() === $this) {
+                $idVoiture->setVoiture(null);
+            }
+        }
+>>>>>>> master
 
         return $this;
     }
 
+<<<<<<< HEAD
     public function getProchaineVidange(): ?string
     {
         return $this->prochaineVidange;
@@ -398,3 +452,17 @@ class Voiture
         return $this;
     }
 }
+=======
+    public function getIdentifiantVoiture(): ?estAssure
+    {
+        return $this->identifiantVoiture;
+    }
+
+    public function setIdentifiantVoiture(estAssure $identifiantVoiture): self
+    {
+        $this->identifiantVoiture = $identifiantVoiture;
+
+        return $this;
+    }
+}
+>>>>>>> master
