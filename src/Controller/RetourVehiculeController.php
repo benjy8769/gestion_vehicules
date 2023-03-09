@@ -89,10 +89,6 @@ class RetourVehiculeController extends AbstractController
         $userPass = $user->getPassword();
 
         if($dateDebut==$dateFinUtilisation){
-            $utilisation->setNom(strval($nomUtilisateur));
-            $utilisation->setPrenom(strval($prenomUtilisateur));
-            $utilisation->setDateDebut(strval($dateDebut));
-            $utilisation->setDateFin("");
             $utilisation->setDateFin(strval($formatDateFin));
             $utilisation->setVoitureId(strval($voitureid));
             $utilisation->setUtilisateurId(strval($userId));
